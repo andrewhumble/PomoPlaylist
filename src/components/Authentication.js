@@ -142,6 +142,7 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
                     <SpotifyAuth
                       redirectUri="https://andrewhumble.github.io/pomoplaylist/"
                       clientID="4e3911e72862411b8934b3ddc35e9d93"
+                      clientSecret="ec74eede3c9f4187a4360ca531636941"
                       scopes={[
                         Scopes.userModifyPlaybackState,
                         Scopes.playlistReadPrivate,
