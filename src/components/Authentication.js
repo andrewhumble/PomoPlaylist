@@ -43,19 +43,19 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
           }}
         >
           <Grid container spacing={2} justifyContent="center">
-          <Typography
-            component="h1"
-            variant="h4"
-            align="center"
-            style={{
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-              fontSize: "30px",
-              color: "#1DB954",
-            }}
-          >
-            WELCOME TO POMOFY
-          </Typography>
+            <Typography
+              component="h1"
+              variant="h4"
+              align="center"
+              style={{
+                fontFamily: "Helvetica",
+                fontWeight: "bold",
+                fontSize: "30px",
+                color: "#1DB954",
+              }}
+            >
+              WELCOME TO POMOFY
+            </Typography>
           </Grid>
           <Box>
             {token ? (
@@ -71,7 +71,7 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
                     color: "black",
                   }}
                 >
-                  logged in as 
+                  logged in as
                 </Typography>
                 <SpotifyApiContext.Provider value={token}>
                   {Login({ token })}
@@ -123,33 +123,33 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
               // Display the login page
               <Box>
                 <Box mt={2}>
-                <Typography
-                  component="h6"
-                  variant="h6"
-                  align="center"
-                  style={{
-                    fontFamily: "Helvetica",
-                    fontWeight: "",
-                    fontSize: "20px",
-                    color: "black",
-                  }}
-                >
-                  sign in to continue
-                </Typography>
+                  <Typography
+                    component="h6"
+                    variant="h6"
+                    align="center"
+                    style={{
+                      fontFamily: "Helvetica",
+                      fontWeight: "",
+                      fontSize: "20px",
+                      color: "black",
+                    }}
+                  >
+                    sign in to continue
+                  </Typography>
                 </Box>
                 <Box mt={2}>
-                  <Grid container justifyContent='center'>
-                <SpotifyAuth
-                  redirectUri="http://localhost:3000/callback"
-                  clientID="1a70ba777fec4ffd9633c0c418bdcf39"
-                  scopes={[
-                    Scopes.userModifyPlaybackState,
-                    Scopes.playlistReadPrivate,
-                    "user-modify-playback-state",
-                    "playlist-read-private",
-                  ]} // either style will work
-                  onAccessToken={(token) => setToken(token)}
-                />
+                  <Grid container justifyContent="center">
+                    <SpotifyAuth
+                      redirectUri="https://andrewhumble.github.io/pomoplaylist/callback"
+                      clientID="4e3911e72862411b8934b3ddc35e9d93"
+                      scopes={[
+                        Scopes.userModifyPlaybackState,
+                        Scopes.playlistReadPrivate,
+                        "user-modify-playback-state",
+                        "playlist-read-private",
+                      ]} // either style will work
+                      onAccessToken={(token) => setToken(token)}
+                    />
                   </Grid>
                 </Box>
               </Box>
