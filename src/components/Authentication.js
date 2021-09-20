@@ -140,7 +140,7 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
                 <Box mt={2}>
                   <Grid container justifyContent="center">
                     <SpotifyAuth
-                      redirectUri="https://andrewhumble.github.io/pomoplaylist/callback"
+                      redirectUri="https://andrewhumble.github.io/pomoplaylist/"
                       clientID="4e3911e72862411b8934b3ddc35e9d93"
                       scopes={[
                         Scopes.userModifyPlaybackState,
