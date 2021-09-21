@@ -29,7 +29,7 @@ const Work = ({ values, pause, nextStep, play, prevStep, incrementSessionCount, 
             align="center"
             style={{
               position: "absolute",
-              left: "35%",
+              left: "40%",
               top: "25%",
               fontFamily: "Helvetica",
               fontWeight: "bold",
@@ -37,7 +37,7 @@ const Work = ({ values, pause, nextStep, play, prevStep, incrementSessionCount, 
               color: "#191414",
             }}
           >
-            get to workk
+            get to work
           </Typography>
         </Grid>
         <Grid>
