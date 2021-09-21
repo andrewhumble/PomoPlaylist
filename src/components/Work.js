@@ -21,7 +21,7 @@ const Work = ({ values, pause, nextStep, play, prevStep, incrementSessionCount, 
         color: "#1DB954",
       }}
     >
-      <Grid justifyContent="center">
+      <Grid direction="column" alignItems="center" justifyContent="center">
         <Grid>
           <Typography
             component="h1"
