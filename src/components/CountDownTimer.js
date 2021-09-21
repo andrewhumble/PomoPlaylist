@@ -9,7 +9,7 @@ const CountDownTimer = ({ hoursMinSecs, values, pause, play, incrementSessionCou
   ]);
 
   const tick = () => {
-    if (hrs === 0 && parseInt(mins) === 0 && secs === 0) {
+    if (parseInt(hrs) === 0 && parseInt(mins) === 0 && parseInt(secs) === 0) {
       if (values.playing === true) {
         console.log(values);
         if (values.sessions % 3 === 0 && values.sessions !== 0) {

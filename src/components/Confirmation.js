@@ -164,8 +164,7 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
               color: "grey",
             }}
           >
-            a standard Pomodoro cycle is a 25/5/10 minute split for work, short
-            break, and long break.
+            a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break
           </Typography>
         </Box>
       </div>
