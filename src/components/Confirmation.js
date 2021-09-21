@@ -87,6 +87,7 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
               InputProps={{
                 className: classes.input,
               }}
+              defaultValue="25"
               onChange={handleChange("workTime")}
             ></TextField>
           </Grid>
@@ -99,6 +100,7 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
               InputProps={{
                 className: classes.input,
               }}
+              defaultValue="5"
               onChange={handleChange("shortBreakTime")}
             ></TextField>
           </Grid>
@@ -111,12 +113,13 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
               InputProps={{
                 className: classes.input,
               }}
+              defaultValue="10"
               onChange={handleChange("longBreakTime")}
             ></TextField>
           </Grid>
         </Grid>
         <br />
-        <Grid container spacing={2} justifyContent='center'>
+        <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} sm={6}>
             <Button
               onClick={Previous}
@@ -151,18 +154,19 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
           </Grid>
         </Grid>
         <Box mt={5}>
-        <Typography
-          component="h1"
-          variant="h4"
-          align="center"
-          style={{
-            fontFamily: "Helvetica",
-            fontSize: "15px",
-            color: "grey",
-          }}
-        >
-          a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break.
-        </Typography>
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            style={{
+              fontFamily: "Helvetica",
+              fontSize: "15px",
+              color: "grey",
+            }}
+          >
+            a standard Pomodoro cycle is a 25/5/10 minute split for work, short
+            break, and long break.
+          </Typography>
         </Box>
       </div>
     </Container>
