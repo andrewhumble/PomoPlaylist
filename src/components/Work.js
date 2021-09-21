@@ -34,7 +34,7 @@ const Work = ({ values, pause, nextStep, play, prevStep, incrementSessionCount, 
           color: "#191414",
         }}
       >
-        GET TO WORK
+        get to work
       </Typography>
       <CountDownTimer
         hoursMinSecs={hoursMinSecs}
@@ -58,7 +58,7 @@ const Work = ({ values, pause, nextStep, play, prevStep, incrementSessionCount, 
           color: "darkgrey",
         }}
       >
-        Number of Pomodoros completed: {values.sessions - 1}
+        number of Pomodoros completed: {values.sessions - 1}
       </Typography>
     </div>
   );

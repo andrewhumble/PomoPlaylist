@@ -54,7 +54,7 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
                 color: "#1DB954",
               }}
             >
-              WELCOME TO POMOFY
+              welcome to pomoplaylist
             </Typography>
           </Grid>
           <Box>
@@ -96,7 +96,7 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
                           width: "50%",
                         }}
                       >
-                        Next
+                        next
                       </Button>
                     </Grid>
                     <Grid>
@@ -113,7 +113,7 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
                           width: "50%",
                         }}
                       >
-                        LOGOUT
+                        logout
                       </Button>
                     </Grid>
                   </Grid>

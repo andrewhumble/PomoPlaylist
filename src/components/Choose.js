@@ -90,7 +90,7 @@ const Choose = ({nextStep, prevStep, values, handleChange}) => {
                 color: "#darkgrey",
               }}
             >
-              CHOOSE A PLAYLIST TO POMOFY
+              choose a playlist
             </Typography>
             <form>
               <Grid container spacing={2} justifyContent="center">
@@ -102,7 +102,7 @@ const Choose = ({nextStep, prevStep, values, handleChange}) => {
                         color: "#191414",
                       }}
                     >
-                      Your Playlist:
+                      your playlist:
                     </InputLabel>
                     <Select
                       labelId="select-playlist"
@@ -141,7 +141,7 @@ const Choose = ({nextStep, prevStep, values, handleChange}) => {
                       fontSize: "18px",
                     }}
                   >
-                    Next
+                    next
                   </Button>
                 </Grid>
               </Grid>

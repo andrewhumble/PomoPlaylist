@@ -74,7 +74,7 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
               color: "#darkgrey",
             }}
           >
-            SET POMODORO SHCEDULE IN MINUTES
+            set pomodoro schedule in minutes
           </Typography>
         </Box>
         <Grid container direction={"row"} spacing={2} justifyContent="center">
@@ -130,7 +130,7 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
                 fontSize: "18px",
               }}
             >
-              Back
+              back
             </Button>
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -146,7 +146,7 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
                 fontSize: "18px",
               }}
             >
-              Start
+              start
             </Button>
           </Grid>
         </Grid>
@@ -161,7 +161,7 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
             color: "grey",
           }}
         >
-          A standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break.
+          a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break.
         </Typography>
         </Box>
       </div>

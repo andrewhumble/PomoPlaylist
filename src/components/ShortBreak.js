@@ -60,7 +60,7 @@ const Success = ({ values, pause, nextStep, play, prevStep, incrementSessionCoun
           color: "darkgrey",
         }}
       >
-        Number of Pomodoros completed: {values.sessions - 1}
+        number of Pomodoros completed: {values.sessions - 1}
       </Typography>
     </div>
   );
