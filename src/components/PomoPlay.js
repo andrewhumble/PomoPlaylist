@@ -18,9 +18,9 @@ export default class PomoPlay extends Component {
     choiceId: "",
     playlists: [],
     playlistsHash: {},
-    workTime: "",
-    shortBreakTime: "",
-    longBreakTime: "",
+    workTime: "25",
+    shortBreakTime: "5",
+    longBreakTime: "10",
     playing: false,
     sessions: 1,
   };
