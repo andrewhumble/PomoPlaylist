@@ -115,16 +115,13 @@ const Choose = ({nextStep, prevStep, values, handleChange}) => {
                       onChange={handleChange("choice")}
                       className={classes.root}
                     >
-                        {values.playlists.map((value, index) => {
-                          return (
-                            <MenuItem
-                              key={index}
-                              value={value[0]}
-                            >
-                              {value[0]}
-                            </MenuItem>
-                          );
-                        })}
+                      {values.playlists.map((value, index) => {
+                        return (
+                          <MenuItem key={index} value={value[0]}>
+                            {value[0]}
+                          </MenuItem>
+                        );
+                      })}
                     </Select>
                   </FormControl>
                 </Box>
@@ -142,6 +139,20 @@ const Choose = ({nextStep, prevStep, values, handleChange}) => {
                     }}
                   >
                     next
+                  </Button>
+                  <Button
+                    onClick={Continue}
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    style={{
+                      backgroundColor: "#1DB954",
+                      padding: "8px 15px",
+                      fontSize: "18px",
+                    }}
+                  >
+                    back
                   </Button>
                 </Grid>
               </Grid>
