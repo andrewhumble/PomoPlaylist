@@ -88,7 +88,7 @@ const Choose = ({ nextStep, prevStep, values, handleChange }) => {
               color: "#darkgrey",
             }}
           >
-            choose a playlist
+            choose a playlist!
           </Typography>
           <form>
             <FormControl style={{ minWidth: 300 }}>
