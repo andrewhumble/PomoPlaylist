@@ -1,62 +1,63 @@
-import React from 'react'
+import React from "react";
 import { SpotifyApiContext } from "react-spotify-api";
 import Cookies from "js-cookie";
 
 import { SpotifyAuth, Scopes } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css";
 
-import {
-  Button,
-  Grid,
-  Box,
-  Typography,
-} from "@material-ui/core";
+import { Button, Grid, Box, Typography } from "@material-ui/core";
 
+const Authentication = ({
+  nextStep,
+  values,
+  handleToken,
+  getUserPlaylists,
+}) => {
+  var [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"));
 
-const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
+  const Login = (e) => {
+    console.log(e);
+    handleToken({ token });
+    getUserPlaylists({ token });
+    nextStep();
+  };
 
-    var [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"));
+  const Logout = () => {
+    setToken(null);
+    //const { step } = this.state;
+    //this.setState({ step: step });
+  };
 
-    const Login = (e) => {
-      console.log(e);
-      handleToken({ token });
-      getUserPlaylists({ token });
-      nextStep();
-    };
-
-    const Logout = () => {
-      setToken(null);
-      //const { step } = this.state;
-      //this.setState({ step: step });
-    };
-
-    return (
-      <div>
-        <div
-          className="authentication"
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "40%",
-            transform: "translate(-50%, -50%)",
-            padding: "100",
-          }}
-        >
-          <Grid container spacing={2} justifyContent="center">
-            <Typography
-              component="h1"
-              variant="h4"
-              align="center"
-              style={{
-                fontFamily: "Helvetica",
-                fontWeight: "bold",
-                fontSize: "30px",
-                color: "#1DB954",
-              }}
-            >
-              welcome to pomoplaylist
-            </Typography>
-          </Grid>
+  return (
+    <div>
+      <div
+        className="authentication"
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "40%",
+          transform: "translate(-50%, -50%)",
+          padding: "100",
+        }}
+      >
+        <Box>
+          <Box mb={4}>
+            <Grid container spacing={6} justifyContent="center">
+              <Typography
+                component="h1"
+                variant="h4"
+                align="center"
+                style={{
+                  fontFamily: "Helvetica",
+                  fontWeight: "bold",
+                  fontSize: "30px",
+                  color: "#1DB954",
+                }}
+              >
+                welcome to pomoplaylist
+              </Typography>
+            </Grid>
+          </Box>
           <Box>
             {token ? (
               <Box>
@@ -155,9 +156,10 @@ const Authentication = ({nextStep, values, handleToken, getUserPlaylists}) => {
               </Box>
             )}
           </Box>
-        </div>
+        </Box>
       </div>
-    );
-}
+    </div>
+  );
+};
 
-export default Authentication
+export default Authentication;

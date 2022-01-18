@@ -5,7 +5,7 @@ import {
   Button,
   TextField,
   Typography,
-  Box
+  Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -39,16 +39,16 @@ const useStyles = makeStyles({
 
 const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
   const classes = useStyles();
-  const Continue = e => {
+  const Continue = (e) => {
     e.preventDefault();
     play(values.choiceId);
     nextStep();
-  }
+  };
 
-  const Previous = e => {
+  const Previous = (e) => {
     e.preventDefault();
     prevStep();
-  }
+  };
 
   return (
     <Container component="main">
@@ -164,12 +164,13 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
               color: "grey",
             }}
           >
-            a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break
+            a standard Pomodoro cycle is a 25/5/10 minute split for work, short
+            break, and long break
           </Typography>
         </Box>
       </div>
     </Container>
   );
-}
+};
 
 export default Confirmation;
