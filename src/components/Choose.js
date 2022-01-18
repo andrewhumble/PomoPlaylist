@@ -9,6 +9,7 @@ import {
   FormControl,
   InputLabel,
   ThemeProvider,
+  Box,
 } from "@material-ui/core";
 import "../App.css";
 import { createTheme } from "@material-ui/core/styles";
@@ -68,94 +69,100 @@ const Choose = ({ nextStep, prevStep, values, handleChange }) => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container component="main" maxWidth="xs">
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            top: "40%",
-            transform: "translate(-50%, -50%)",
-            padding: "100",
-          }}
-        >
-          <Typography
-            component="h1"
-            variant="h4"
-            align="center"
+        <Box>
+          <div
             style={{
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-              fontSize: "30px",
-              color: "#darkgrey",
+              position: "absolute",
+              left: "50%",
+              top: "40%",
+              transform: "translate(-50%, -50%)",
+              padding: "100",
             }}
           >
-            choose a playlist!
-          </Typography>
-          <form>
-            <FormControl style={{ minWidth: 300 }}>
-              <InputLabel
-                id="demo-controlled-open-select-label"
+            <Box mb={2}>
+              <Typography
+                component="h1"
+                variant="h4"
+                align="center"
                 style={{
-                  color: "#191414",
+                  fontFamily: "Helvetica",
+                  fontWeight: "bold",
+                  fontSize: "30px",
+                  color: "#darkgrey",
                 }}
               >
-                your playlist:
-              </InputLabel>
-              <Select
-                labelId="select-playlist"
-                id="select-playlist"
-                name="values.choice"
-                open={open}
-                onClose={handleClose}
-                onOpen={handleOpen}
-                value={values.choice ? values.choice : ""}
-                onChange={handleChange("choice")}
-                className={classes.root}
-              >
-                {values.playlists.map((value, index) => {
-                  return (
-                    <MenuItem key={index} value={value[0]}>
-                      {value[0]}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
-          </form>
-          <Grid container>
-            <Grid item xs={6}>
-              <Button
-                onClick={Continue}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                style={{
-                  backgroundColor: "#1DB954",
-                  padding: "8px 15px",
-                  fontSize: "18px",
-                }}
-              >
-                go on
-              </Button>
+                choose a playlist!!
+              </Typography>
+            </Box>
+            <Box mb={2}>
+              <form>
+                <FormControl style={{ minWidth: 300 }}>
+                  <InputLabel
+                    id="demo-controlled-open-select-label"
+                    style={{
+                      color: "#191414",
+                    }}
+                  >
+                    your playlist:
+                  </InputLabel>
+                  <Select
+                    labelId="select-playlist"
+                    id="select-playlist"
+                    name="values.choice"
+                    open={open}
+                    onClose={handleClose}
+                    onOpen={handleOpen}
+                    value={values.choice ? values.choice : ""}
+                    onChange={handleChange("choice")}
+                    className={classes.root}
+                  >
+                    {values.playlists.map((value, index) => {
+                      return (
+                        <MenuItem key={index} value={value[0]}>
+                          {value[0]}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </form>
+            </Box>
+            <Grid container>
+              <Grid item xs={6}>
+                <Button
+                  onClick={Continue}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  style={{
+                    backgroundColor: "#1DB954",
+                    padding: "8px 15px",
+                    fontSize: "18px",
+                  }}
+                >
+                  go on!
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  onClick={Continue}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  style={{
+                    backgroundColor: "#1DB954",
+                    padding: "8px 15px",
+                    fontSize: "18px",
+                  }}
+                >
+                  back
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <Button
-                onClick={Continue}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                style={{
-                  backgroundColor: "#1DB954",
-                  padding: "8px 15px",
-                  fontSize: "18px",
-                }}
-              >
-                back
-              </Button>
-            </Grid>
-          </Grid>
-        </div>
+          </div>
+        </Box>
       </Container>
     </ThemeProvider>
   );
