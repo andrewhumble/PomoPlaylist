@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import Confirmation from './Confirmation'
-import Authentication from './Authentication'
-import Choose from './Choose'
-import Work from './Work'
+import React, { Component } from "react";
+import Confirmation from "./Confirmation";
+import Authentication from "./Authentication";
+import Choose from "./Choose";
+import Work from "./Work";
 import ShortBreak from "./ShortBreak";
 import LongBreak from "./LongBreak";
-
+import Setup from "./Setup";
 
 import "react-spotify-auth/dist/index.css";
 import SpotifyWebApi from "spotify-web-api-js";
@@ -31,9 +31,21 @@ export default class PomoPlay extends Component {
     this.setState({ step: step + 1 });
   };
 
+  // logout
+  logout = () => {
+    this.setState({ accessToken: undefined });
+    this.setState({ step: 1 });
+  };
+
   // set current step
   setStep = (input) => {
     this.setState({ step: input });
+  };
+
+  // go back to previous step
+  nextStep = () => {
+    const { step } = this.state;
+    this.setState({ step: step + 1 });
   };
 
   // go back to previous step
@@ -61,9 +73,9 @@ export default class PomoPlay extends Component {
 
   // handle token change
   handleToken = (input) => {
-    this.setState({ accessToken: [input][0].token });
+    this.setState({ accessToken: [input][0] });
     //this.setState({ username: [input].token });
-    console.log([input]);
+    console.log([input][0]);
   };
 
   getUserPlaylists = (accessToken) => {
@@ -158,18 +170,29 @@ export default class PomoPlay extends Component {
             values={values}
             handleToken={this.handleToken}
             getUserPlaylists={this.getUserPlaylists}
+            logout={this.logout}
           />
         );
       case 2:
+        return (
+          <Setup
+            prevStep={this.prevStep}
+            nextStep={this.nextStep}
+            values={values}
+            logout={this.logout}
+          />
+        );
+      case 3:
         return (
           <Choose
             prevStep={this.prevStep}
             nextStep={this.nextStep}
             handleChange={this.handleChange}
             values={values}
+            logout={this.logout}
           />
         );
-      case 3:
+      case 4:
         return (
           <Confirmation
             prevStep={this.prevStep}
@@ -177,9 +200,10 @@ export default class PomoPlay extends Component {
             values={values}
             play={this.play}
             handleChange={this.handleChange}
+            logout={this.logout}
           />
         );
-      case 4:
+      case 5:
         return (
           <Work
             values={values}
@@ -191,7 +215,7 @@ export default class PomoPlay extends Component {
             incrementSessionCount={this.incrementSessionCount}
           />
         );
-      case 5:
+      case 6:
         return (
           <ShortBreak
             values={values}
@@ -203,7 +227,7 @@ export default class PomoPlay extends Component {
             incrementSessionCount={this.incrementSessionCount}
           />
         );
-      case 6:
+      case 7:
         return (
           <LongBreak
             values={values}

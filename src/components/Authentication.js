@@ -12,8 +12,9 @@ const Authentication = ({
   values,
   handleToken,
   getUserPlaylists,
+  logout,
 }) => {
-  var [token, setToken] = React.useState(Cookies.get("spotifyAuthToken"));
+  var [token] = React.useState(Cookies.get("spotifyAuthToken"));
 
   const Login = (e) => {
     console.log(e);
@@ -23,7 +24,7 @@ const Authentication = ({
   };
 
   const Logout = () => {
-    setToken(null);
+    logout();
     //const { step } = this.state;
     //this.setState({ step: step });
   };
@@ -59,7 +60,7 @@ const Authentication = ({
             </Grid>
           </Box>
           <Box>
-            {token ? (
+            {values.accessToken ? (
               <Box>
                 <Typography
                   component="h6"
@@ -141,7 +142,7 @@ const Authentication = ({
                 <Box mt={2}>
                   <Grid container justifyContent="center">
                     <SpotifyAuth
-                      redirectUri="https://andrewhumble.github.io/pomoplaylist"
+                      redirectUri="http://localhost:3000/pomoplaylist"
                       clientID="4e3911e72862411b8934b3ddc35e9d93"
                       scopes={[
                         Scopes.userModifyPlaybackState,
@@ -149,7 +150,7 @@ const Authentication = ({
                         "user-modify-playback-state",
                         "playlist-read-private",
                       ]} // either style will work
-                      onAccessToken={(token) => setToken(token)}
+                      onAccessToken={(token) => handleToken(token)}
                     />
                   </Grid>
                 </Box>
