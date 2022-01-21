@@ -1,10 +1,18 @@
 import React from "react";
 
 import "react-spotify-auth/dist/index.css";
+import logo from "/Users/andrewhumble/Documents/GitHub/pomoplaylist/src/favicon.ico";
 
-import { Button, Box, Typography } from "@material-ui/core";
+import {
+  Button,
+  Box,
+  Typography,
+  Grid,
+  makeStyles,
+  classes,
+} from "@material-ui/core";
 
-const Setup = ({ nextStep, logout }) => {
+const Setup = ({ nextStep, logout, homeClick }) => {
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
@@ -15,40 +23,63 @@ const Setup = ({ nextStep, logout }) => {
     logout();
   };
 
+  const Home = (e) => {
+    e.preventDefault();
+    homeClick();
+  };
+
+  const useStyles = makeStyles((theme) => ({
+    right: {
+      marginLeft: "auto",
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <div>
-      <Grid container spacing={6} justifyContent="center">
-        <Box mb={1}>
-          <Typography
-            component="h1"
-            variant="h4"
-            align="left"
-            style={{
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-              fontSize: "30px",
-              color: "#darkgrey",
-            }}
-          >
-            connect your device
-          </Typography>
+      <Box>
+        <Box mt={2.5} ml={2.5} mr={2.5}>
+          <Grid container alignItems="center">
+            <Grid>
+              <img src={logo} alt="Logo" width="20" height="20" />
+            </Grid>
+            <Grid>
+              <Box ml={0.75}>
+                <Typography
+                  component="h1"
+                  variant="h4"
+                  align="left"
+                  style={{
+                    fontFamily: "Helvetica",
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                    color: "#1DB954",
+                  }}
+                  onClick={Home}
+                >
+                  pomoplaylist
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid className={classes.right}>
+              <Button
+                onClick={Continue}
+                type="submit"
+                variant="contained"
+                color="primary"
+                style={{
+                  backgroundColor: "#F2545B",
+                  padding: "4px 10px",
+                  fontSize: "12px",
+                }}
+              >
+                logout
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
-        <Box mt={2} mr={2} align="right">
-          <Button
-            onClick={Continue}
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{
-              backgroundColor: "#F2545B",
-              padding: "6px 9px",
-              fontSize: "15px",
-            }}
-          >
-            logout
-          </Button>
-        </Box>
-      </Grid>
+      </Box>
       <div
         className="setup"
         style={{

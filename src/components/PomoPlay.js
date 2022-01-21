@@ -31,6 +31,11 @@ export default class PomoPlay extends Component {
     this.setState({ step: step + 1 });
   };
 
+  // Goes home
+  homeClick = () => {
+    this.setState({ step: 1 });
+  };
+
   // logout
   logout = () => {
     this.setState({ accessToken: undefined });
@@ -171,6 +176,7 @@ export default class PomoPlay extends Component {
             handleToken={this.handleToken}
             getUserPlaylists={this.getUserPlaylists}
             logout={this.logout}
+            homeClick={this.homeClick}
           />
         );
       case 2:
@@ -180,6 +186,7 @@ export default class PomoPlay extends Component {
             nextStep={this.nextStep}
             values={values}
             logout={this.logout}
+            homeClick={this.homeClick}
           />
         );
       case 3:
@@ -190,6 +197,7 @@ export default class PomoPlay extends Component {
             handleChange={this.handleChange}
             values={values}
             logout={this.logout}
+            homeClick={this.homeClick}
           />
         );
       case 4:
@@ -201,6 +209,7 @@ export default class PomoPlay extends Component {
             play={this.play}
             handleChange={this.handleChange}
             logout={this.logout}
+            homeClick={this.homeClick}
           />
         );
       case 5:
@@ -213,6 +222,8 @@ export default class PomoPlay extends Component {
             play={this.play}
             setStep={this.setStep}
             incrementSessionCount={this.incrementSessionCount}
+            logout={this.logout}
+            homeClick={this.homeClick}
           />
         );
       case 6:
@@ -225,6 +236,8 @@ export default class PomoPlay extends Component {
             play={this.play}
             setStep={this.setStep}
             incrementSessionCount={this.incrementSessionCount}
+            logout={this.logout}
+            homeClick={this.homeClick}
           />
         );
       case 7:
@@ -237,6 +250,8 @@ export default class PomoPlay extends Component {
             play={this.play}
             setStep={this.setStep}
             incrementSessionCount={this.incrementSessionCount}
+            logout={this.logout}
+            homeClick={this.homeClick}
           />
         );
       default:
