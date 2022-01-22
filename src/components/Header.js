@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   mobileHeader: {
     backgroundColor: "#000000",
     paddingRight: "79px",
-    paddingLeft: "50px",
+    paddingLeft: "0px",
   },
   logoStyle: {
     fontFamily: "Montserrat, sans-serif",
