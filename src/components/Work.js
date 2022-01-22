@@ -117,7 +117,7 @@ const Work = ({
             transform: "translate(-50%, -50%)",
             fontFamily: "Helvetica",
             fontWeight: "bold",
-            fontSize: "40px",
+            fontSize: "80px",
             color: "#1DB954",
           }}
         >
@@ -129,7 +129,7 @@ const Work = ({
                 align="center"
                 style={{
                   position: "absolute",
-                  left: "40%",
+                  left: "37%",
                   top: "25%",
                   fontFamily: "Helvetica",
                   fontWeight: "bold",
@@ -156,7 +156,7 @@ const Work = ({
                 align="center"
                 style={{
                   position: "absolute",
-                  left: "35%",
+                  left: "23%",
                   top: "70%",
                   fontFamily: "Helvetica",
                   fontWeight: "bold",
