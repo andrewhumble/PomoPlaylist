@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { Component } from "react";
 import Confirmation from "./Confirmation";
 import Authentication from "./Authentication";
 import Choose from "./Choose";
@@ -19,6 +19,7 @@ export default class PomoPlay extends Component {
     choiceId: "",
     playlists: [],
     playlistsHash: {},
+    pausePosition: 0,
     workTime: "25",
     shortBreakTime: "5",
     longBreakTime: "10",
@@ -112,12 +113,12 @@ export default class PomoPlay extends Component {
   };
 
   play = (choiceId) => {
-    console.log(this.state.accessToken[0].token);
     const spotifyApi = new SpotifyWebApi();
-    spotifyApi.setAccessToken(this.state.accessToken[0].token);
+    spotifyApi.setAccessToken(Cookies.get("spotifyAuthToken"));
     spotifyApi
       .play({
         context_uri: "spotify:playlist:" + choiceId,
+        position_ms: this.state.pausePosition,
       })
       .then((response) => {
         console.log(response);
@@ -129,9 +130,11 @@ export default class PomoPlay extends Component {
   };
 
   pause = (choiceId) => {
-    console.log(this.state.accessToken);
     const spotifyApi = new SpotifyWebApi();
-    spotifyApi.setAccessToken(this.state.accessToken);
+    spotifyApi.setAccessToken(Cookies.get("spotifyAuthToken"));
+    spotifyApi.getMyCurrentPlaybackState().then((response) => {
+      this.setState({ pausePosition: response.progress_ms });
+    });
     spotifyApi
       .pause({
         context_uri: "spotify:playlist:" + choiceId,
@@ -158,6 +161,7 @@ export default class PomoPlay extends Component {
       longBreakTime,
       playing,
       sessions,
+      pausePosition,
     } = this.state;
     const values = {
       accessToken,
@@ -170,6 +174,7 @@ export default class PomoPlay extends Component {
       longBreakTime,
       playing,
       sessions,
+      pausePosition,
     };
 
     switch (step) {

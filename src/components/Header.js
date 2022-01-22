@@ -6,11 +6,15 @@ import {
   Grid,
   Box,
   Button,
+  IconButton,
+  Drawer,
+  MenuItem,
+  Link,
 } from "@material-ui/core";
 import logoImg from "/Users/andrewhumble/Documents/GitHub/pomoplaylist/src/favicon.ico";
-import { Helmet } from "react-helmet";
-import React from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Link as RouterLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -34,6 +38,12 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  "@media (max-width: 900px)": {
+    paddingLeft: 0,
+  },
+  drawerContainer: {
+    padding: "20px 30px",
+  },
 }));
 
 const headersData = [
@@ -47,28 +57,99 @@ const headersData = [
   },
 ];
 
-const Header = ({ logout, values }) => {
-  const { header, logoStyle, menuButton } = useStyles();
+const Header = ({ logout }) => {
+  const { header, menuButton, toolbar, drawerContainer, logoStyle } =
+    useStyles();
+
+  const [state, setState] = useState({
+    mobileView: false,
+    drawerOpen: false,
+  });
+
+  const { mobileView, drawerOpen } = state;
+
+  useEffect(() => {
+    const setResponsiveness = () => {
+      return window.innerWidth < 1000
+        ? setState((prevState) => ({ ...prevState, mobileView: true }))
+        : setState((prevState) => ({ ...prevState, mobileView: false }));
+    };
+
+    setResponsiveness();
+
+    window.addEventListener("resize", () => setResponsiveness());
+
+    return () => {
+      window.removeEventListener("resize", () => setResponsiveness());
+    };
+  }, []);
 
   const displayDesktop = () => {
     return (
-      <Toolbar>
+      <Toolbar className={toolbar}>
         {logo}
         <div>
-          <Grid container alignItems="flex-end">
-            <Grid>
-              <Box ml={55}>{getMenuButtons()}</Box>
-            </Grid>
-            <Grid>
-              <Box>{getLogoutButtons()}</Box>
-            </Grid>
+          <Grid container>
+            {getMenuButtons()}
+            {getLogoutButtons()}
           </Grid>
         </div>
       </Toolbar>
     );
   };
 
-  const navigate = useNavigate();
+  const displayMobile = () => {
+    const handleDrawerOpen = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: true }));
+    const handleDrawerClose = () =>
+      setState((prevState) => ({ ...prevState, drawerOpen: false }));
+
+    return (
+      <Toolbar>
+        <IconButton
+          {...{
+            edge: "start",
+            color: "inherit",
+            "aria-label": "menu",
+            "aria-haspopup": "true",
+            onClick: handleDrawerOpen,
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        <Drawer
+          {...{
+            anchor: "left",
+            open: drawerOpen,
+            onClose: handleDrawerClose,
+          }}
+        >
+          <div className={drawerContainer}>{getDrawerChoices()}</div>
+        </Drawer>
+
+        <div>{logo}</div>
+      </Toolbar>
+    );
+  };
+
+  const getDrawerChoices = () => {
+    return headersData.map(({ label, href }) => {
+      return (
+        <Link
+          {...{
+            component: RouterLink,
+            to: href,
+            color: "inherit",
+            style: { textDecoration: "none" },
+            key: label,
+          }}
+        >
+          <MenuItem>{label}</MenuItem>
+        </Link>
+      );
+    });
+  };
 
   const onClick = (e) => {
     logout();
@@ -126,51 +207,13 @@ const Header = ({ logout, values }) => {
         </Box>
       </Grid>
     </div>
-
-    // <div>
-    //   <Grid container>
-    //     <Box mt={1}>
-    //       <img src={logoImg} alt="Logo" width="20" height="20" />
-    //     </Box>
-    //     <Box ml={1} mt={0.5}>
-    //       <Typography variant="h6" component="h1" className={logoStyle}>
-    //         Pomo
-    //       </Typography>
-    //     </Box>
-    //     <Box mt={0.5} ml={0.15}>
-    //       <Typography variant="h6" component="h1">
-    //         Playlist
-    //       </Typography>
-    //     </Box>
-    //     <Grid item xs>
-    //       <Grid container direction="row-reverse">
-    //         <Grid item>
-    //           <Box ml={145} mt={0.65}>
-    //             <Button
-    //               onClick={onClick}
-    //               type="submit"
-    //               variant="contained"
-    //               style={{
-    //                 padding: "4px 10px",
-    //                 fontSize: "12px",
-    //                 backgroundColor: "#1DB954",
-    //                 fontFamily: "Montserrat, sans-serif",
-    //                 fontWeight: "600",
-    //               }}
-    //             >
-    //               logout
-    //             </Button>
-    //           </Box>
-    //         </Grid>
-    //       </Grid>
-    //     </Grid>
-    //   </Grid>
-    // </div>
   );
 
   return (
     <header>
-      <AppBar className={header}>{displayDesktop()}</AppBar>
+      <AppBar className={header}>
+        {mobileView ? displayMobile() : displayDesktop()}
+      </AppBar>
     </header>
   );
 };

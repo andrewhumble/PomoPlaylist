@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SpotifyApiContext } from "react-spotify-api";
 import Cookies from "js-cookie";
 import Header from "./Header";
@@ -13,13 +13,9 @@ const Authentication = ({
   values,
   handleToken,
   getUserPlaylists,
-  sameStep,
-  clearToken,
   logout,
 }) => {
-  var [spotifyAuthToken, setSpotifyAuthToken] = useState();
-
-  console.log(spotifyAuthToken);
+  var [spotifyAuthToken] = useState();
 
   const Login = (token) => {
     handleToken({ token });

@@ -83,7 +83,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
             choose a playlist
           </Typography>
         </Box>
-        <Box mb={4}>
+        <Box mb={5}>
           <form>
             <FormControl style={{ minWidth: 300 }}>
               <InputLabel
