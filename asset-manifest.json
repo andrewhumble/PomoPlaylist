@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/pomoplaylist/static/css/main.3f9e3ed4.css",
-    "main.js": "/pomoplaylist/static/js/main.3782a5b5.js",
+    "main.js": "/pomoplaylist/static/js/main.907bf7a6.js",
     "static/js/787.1c8cdbda.chunk.js": "/pomoplaylist/static/js/787.1c8cdbda.chunk.js",
     "static/media/favicon.ico": "/pomoplaylist/static/media/favicon.3d159f8839ada15d13d3.ico",
     "index.html": "/pomoplaylist/index.html",
     "main.3f9e3ed4.css.map": "/pomoplaylist/static/css/main.3f9e3ed4.css.map",
-    "main.3782a5b5.js.map": "/pomoplaylist/static/js/main.3782a5b5.js.map",
+    "main.907bf7a6.js.map": "/pomoplaylist/static/js/main.907bf7a6.js.map",
     "787.1c8cdbda.chunk.js.map": "/pomoplaylist/static/js/787.1c8cdbda.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3f9e3ed4.css",
-    "static/js/main.3782a5b5.js"
+    "static/js/main.907bf7a6.js"
   ]
 }
