@@ -8,6 +8,7 @@ import {
   Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Header from "./Header";
 
 const useStyles = makeStyles({
   root: {
@@ -37,7 +38,14 @@ const useStyles = makeStyles({
   },
 });
 
-const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
+const Confirmation = ({
+  prevStep,
+  nextStep,
+  values,
+  logout,
+  play,
+  handleChange,
+}) => {
   const classes = useStyles();
   const Continue = (e) => {
     e.preventDefault();
@@ -52,6 +60,7 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
 
   return (
     <Container component="main">
+      <Header logout={logout} values={values} />
       <div
         style={{
           position: "absolute",
@@ -77,7 +86,13 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
             set pomodoro schedule in minutes
           </Typography>
         </Box>
-        <Grid container direction={"row"} spacing={2} justifyContent="center">
+        <Grid
+          container
+          direction={"row"}
+          spacing={2}
+          justifyContent="center"
+          alignItems="flex-end"
+        >
           <Grid item>
             <TextField
               variant="outlined"
@@ -119,7 +134,12 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
           </Grid>
         </Grid>
         <br />
-        <Grid container spacing={2} justifyContent="center">
+        <Grid
+          container
+          spacing={2}
+          justifyContent="center"
+          alignItems="flex-end"
+        >
           <Grid item xs={12} sm={6}>
             <Button
               onClick={Previous}
@@ -129,8 +149,11 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
               color="primary"
               style={{
                 backgroundColor: "#1DB954",
-                padding: "8px 100px",
+                color: "white",
+                padding: "8px 15px",
                 fontSize: "18px",
+                fontFamily: "Montserrat, sans-serif",
+                fontWeight: "600",
               }}
             >
               back
@@ -145,8 +168,11 @@ const Confirmation = ({ prevStep, nextStep, values, play, handleChange }) => {
               color="primary"
               style={{
                 backgroundColor: "#1DB954",
-                padding: "8px 100px",
+                color: "white",
+                padding: "8px 15px",
                 fontSize: "18px",
+                fontFamily: "Montserrat, sans-serif",
+                fontWeight: "600",
               }}
             >
               start

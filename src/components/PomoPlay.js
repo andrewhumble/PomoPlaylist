@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, Component } from "react";
 import Confirmation from "./Confirmation";
 import Authentication from "./Authentication";
 import Choose from "./Choose";
@@ -6,6 +6,7 @@ import Work from "./Work";
 import ShortBreak from "./ShortBreak";
 import LongBreak from "./LongBreak";
 import Setup from "./Setup";
+import Cookies from "js-cookie";
 
 import "react-spotify-auth/dist/index.css";
 import SpotifyWebApi from "spotify-web-api-js";
@@ -31,14 +32,15 @@ export default class PomoPlay extends Component {
     this.setState({ step: step + 1 });
   };
 
-  // Goes home
-  homeClick = () => {
-    this.setState({ step: 1 });
+  logout = () => {
+    Cookies.remove("spotifyAuthToken", {
+      path: "react-spotify-auth",
+    });
+    window.location = "/pomoplaylist";
   };
 
-  // logout
-  logout = () => {
-    this.setState({ accessToken: undefined });
+  // Goes home
+  homeClick = () => {
     this.setState({ step: 1 });
   };
 
@@ -48,15 +50,15 @@ export default class PomoPlay extends Component {
   };
 
   // go back to previous step
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({ step: step + 1 });
-  };
-
-  // go back to previous step
   prevStep = () => {
     const { step } = this.state;
     this.setState({ step: step - 1 });
+  };
+
+  // stay on the same page
+  sameStep = () => {
+    const { step } = this.state;
+    this.setState({ step: step });
   };
 
   // handle field change
@@ -78,9 +80,12 @@ export default class PomoPlay extends Component {
 
   // handle token change
   handleToken = (input) => {
-    this.setState({ accessToken: [input][0] });
-    //this.setState({ username: [input].token });
-    console.log([input][0]);
+    this.setState({ accessToken: [input] });
+  };
+
+  clearToken = () => {
+    this.setState({ accessToken: "FLAG" });
+    console.log(this.state);
   };
 
   getUserPlaylists = (accessToken) => {
@@ -107,9 +112,9 @@ export default class PomoPlay extends Component {
   };
 
   play = (choiceId) => {
-    console.log(this.state.accessToken);
+    console.log(this.state.accessToken[0].token);
     const spotifyApi = new SpotifyWebApi();
-    spotifyApi.setAccessToken(this.state.accessToken);
+    spotifyApi.setAccessToken(this.state.accessToken[0].token);
     spotifyApi
       .play({
         context_uri: "spotify:playlist:" + choiceId,
@@ -172,11 +177,13 @@ export default class PomoPlay extends Component {
         return (
           <Authentication
             nextStep={this.nextStep}
+            sameStep={this.sameStep}
             values={values}
             handleToken={this.handleToken}
             getUserPlaylists={this.getUserPlaylists}
             logout={this.logout}
             homeClick={this.homeClick}
+            clearToken={this.clearToken}
           />
         );
       case 2:

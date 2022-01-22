@@ -1,36 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SpotifyApiContext } from "react-spotify-api";
 import Cookies from "js-cookie";
+import Header from "./Header";
 
-import { SpotifyAuth, Scopes } from "react-spotify-auth";
+import { SpotifyAuth } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css";
 
-import { Button, Grid, Box, Typography } from "@material-ui/core";
+import { Grid, Box, Typography } from "@material-ui/core";
 
 const Authentication = ({
   nextStep,
   values,
   handleToken,
   getUserPlaylists,
+  sameStep,
+  clearToken,
   logout,
 }) => {
-  var [token] = React.useState(Cookies.get("spotifyAuthToken"));
+  var [spotifyAuthToken, setSpotifyAuthToken] = useState();
 
-  const Login = (e) => {
-    console.log(e);
+  console.log(spotifyAuthToken);
+
+  const Login = (token) => {
     handleToken({ token });
     getUserPlaylists({ token });
     nextStep();
   };
 
-  const Logout = () => {
-    logout();
-    //const { step } = this.state;
-    //this.setState({ step: step });
-  };
-
   return (
     <div>
+      <Header logout={logout} values={values} />
       <div
         className="authentication"
         style={{
@@ -43,7 +42,12 @@ const Authentication = ({
       >
         <Box>
           <Box mb={4}>
-            <Grid container spacing={6} justifyContent="center">
+            <Grid
+              container
+              spacing={6}
+              justifyContent="center"
+              alignItems="flex-end"
+            >
               <Typography
                 component="h1"
                 variant="h4"
@@ -60,7 +64,7 @@ const Authentication = ({
             </Grid>
           </Box>
           <Box>
-            {values.accessToken ? (
+            {Cookies.get("spotifyAuthToken") ? (
               <Box>
                 <Typography
                   component="h6"
@@ -70,56 +74,13 @@ const Authentication = ({
                     fontFamily: "Helvetica",
                     fontWeight: "",
                     fontSize: "20px",
-                    color: "black",
                   }}
                 >
                   logged in as
                 </Typography>
-                <SpotifyApiContext.Provider value={token}>
-                  {Login({ token })}
+                <SpotifyApiContext.Provider value={spotifyAuthToken}>
+                  {Login({ spotifyAuthToken })}
                 </SpotifyApiContext.Provider>
-                <Box mt={3}>
-                  <Grid container spacing={2} justifyContent="center">
-                    <Grid>
-                      <Button
-                        onClick={() => {
-                          handleToken({ token });
-                          getUserPlaylists({ token });
-                          nextStep();
-                        }}
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        style={{
-                          backgroundColor: "#191414",
-                          padding: "8px 50px",
-                          fontSize: "18px",
-                          width: "50%",
-                        }}
-                      >
-                        next
-                      </Button>
-                    </Grid>
-                    <Grid>
-                      <Button
-                        onClick={Logout}
-                        type="submits"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        style={{
-                          backgroundColor: "#191414",
-                          padding: "8px 50px",
-                          fontSize: "18px",
-                          width: "50%",
-                        }}
-                      >
-                        logout
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Box>
               </Box>
             ) : (
               // Display the login page
@@ -133,25 +94,23 @@ const Authentication = ({
                       fontFamily: "Helvetica",
                       fontWeight: "",
                       fontSize: "20px",
-                      color: "black",
                     }}
                   >
                     sign in to continue
                   </Typography>
                 </Box>
                 <Box mt={2}>
-                  <Grid container justifyContent="center">
+                  <Grid container justifyContent="center" alignItems="flex-end">
                     <SpotifyAuth
                       redirectUri="http://localhost:3000/pomoplaylist"
-                      //redirectUri="https://andrewhumble.github.io/pomoplaylist"
+                      // redirectUri="https://andrewhumble.github.io/pomoplaylist"
                       clientID="4e3911e72862411b8934b3ddc35e9d93"
                       scopes={[
-                        Scopes.userModifyPlaybackState,
-                        Scopes.playlistReadPrivate,
+                        "playlist-read-collaborative",
                         "user-modify-playback-state",
-                        "playlist-read-private",
+                        "user-read-playback-state",
                       ]} // either style will work
-                      onAccessToken={(token) => handleToken(token)}
+                      onAccessToken={Login}
                     />
                   </Grid>
                 </Box>

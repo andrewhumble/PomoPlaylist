@@ -1,6 +1,15 @@
 import React from "react";
+import Header from "./Header";
 
-const CountDownTimer = ({ hoursMinSecs, values, pause, play, incrementSessionCount, setStep }) => {
+const CountDownTimer = ({
+  hoursMinSecs,
+  values,
+  pause,
+  play,
+  logout,
+  incrementSessionCount,
+  setStep,
+}) => {
   const { hours = 0, minutes = 0, seconds = 0 } = hoursMinSecs;
   const [[hrs, mins, secs], setTime] = React.useState([
     hours,
@@ -24,8 +33,7 @@ const CountDownTimer = ({ hoursMinSecs, values, pause, play, incrementSessionCou
         play(values.choiceId);
         setStep(4);
       }
-    }
-    else if (mins === 0 && secs === 0) {
+    } else if (mins === 0 && secs === 0) {
       setTime([hrs - 1, 59, 59]);
     } else if (secs === 0) {
       setTime([hrs, mins - 1, 59]);

@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import PomoPlay from "./components/PomoPlay";
 
-function App(){
+function App() {
   return (
     <div className="App">
       <PomoPlay />
