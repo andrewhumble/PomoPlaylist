@@ -17,10 +17,15 @@ import { Link as RouterLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 const useStyles = makeStyles(() => ({
-  header: {
+  desktopHeader: {
     backgroundColor: "#000000",
     paddingRight: "79px",
-    paddingLeft: "118px",
+    paddingLeft: "100px",
+  },
+  mobileHeader: {
+    backgroundColor: "#000000",
+    paddingRight: "79px",
+    paddingLeft: "50px",
   },
   logoStyle: {
     fontFamily: "Montserrat, sans-serif",
@@ -58,8 +63,14 @@ const headersData = [
 ];
 
 const Header = ({ logout }) => {
-  const { header, menuButton, toolbar, drawerContainer, logoStyle } =
-    useStyles();
+  const {
+    desktopHeader,
+    mobileHeader,
+    menuButton,
+    toolbar,
+    drawerContainer,
+    logoStyle,
+  } = useStyles();
 
   const [state, setState] = useState({
     mobileView: false,
@@ -86,15 +97,17 @@ const Header = ({ logout }) => {
 
   const displayDesktop = () => {
     return (
-      <Toolbar className={toolbar}>
-        {logo}
-        <div>
-          <Grid container>
-            {getMenuButtons()}
-            {getLogoutButtons()}
-          </Grid>
-        </div>
-      </Toolbar>
+      <AppBar className={desktopHeader}>
+        <Toolbar className={toolbar}>
+          {logo}
+          <div>
+            <Grid container>
+              {getMenuButtons()}
+              {getLogoutButtons()}
+            </Grid>
+          </div>
+        </Toolbar>
+      </AppBar>
     );
   };
 
@@ -105,31 +118,36 @@ const Header = ({ logout }) => {
       setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
-      <Toolbar>
-        <IconButton
-          {...{
-            edge: "start",
-            color: "inherit",
-            "aria-label": "menu",
-            "aria-haspopup": "true",
-            onClick: handleDrawerOpen,
-          }}
-        >
-          <MenuIcon />
-        </IconButton>
+      <AppBar className={mobileHeader}>
+        <Toolbar>
+          <IconButton
+            {...{
+              edge: "start",
+              color: "inherit",
+              "aria-label": "menu",
+              "aria-haspopup": "true",
+              onClick: handleDrawerOpen,
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
 
-        <Drawer
-          {...{
-            anchor: "left",
-            open: drawerOpen,
-            onClose: handleDrawerClose,
-          }}
-        >
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
-        </Drawer>
+          <Drawer
+            {...{
+              anchor: "left",
+              open: drawerOpen,
+              onClose: handleDrawerClose,
+            }}
+          >
+            <div className={drawerContainer}>
+              {getDrawerChoices()}
+              {getLogoutButtons()}
+            </div>
+          </Drawer>
 
-        <div>{logo}</div>
-      </Toolbar>
+          <div>{logo}</div>
+        </Toolbar>
+      </AppBar>
     );
   };
 
@@ -209,13 +227,7 @@ const Header = ({ logout }) => {
     </div>
   );
 
-  return (
-    <header>
-      <AppBar className={header}>
-        {mobileView ? displayMobile() : displayDesktop()}
-      </AppBar>
-    </header>
-  );
+  return <header>{mobileView ? displayMobile() : displayDesktop()}</header>;
 };
 
 export default Header;
