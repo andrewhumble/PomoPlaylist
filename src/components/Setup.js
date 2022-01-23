@@ -33,26 +33,26 @@ const Setup = ({ nextStep, logout, values }) => {
               fontFamily: "Helvetica",
               fontWeight: "bold",
               fontSize: "30px",
-              color: "#darkgrey",
+              color: "white",
             }}
           >
-            connect your device
+            Connect your device
           </Typography>
         </Box>
-        <Box mt={3}>
+        <Box mt={2}>
           <Typography
             component="h1"
             variant="h4"
             align="left"
             style={{
               fontFamily: "Helvetica",
-              fontSize: "15px",
-              color: "grey",
+              fontSize: "17px",
+              color: "lightgrey",
             }}
           >
-            in order for pomoplaylist to know which device to connect to, you
+            In order for pomoplaylist to know which device to connect to, you
             need to play a song (it can be anything) on your desired device.
-            this sends a signal to the program so it knows which device to.
+            This sends a signal to the program so it knows which device to.
           </Typography>
         </Box>
         <Box mt={3}>
@@ -62,14 +62,14 @@ const Setup = ({ nextStep, logout, values }) => {
             style={{
               fontWeight: "bold",
               fontFamily: "Helvetica",
-              fontSize: "20px",
-              color: "#1DB954",
+              fontSize: "22px",
+              color: "#20d45f",
             }}
           >
-            so, play a song on your desired device, and then press continue!
+            So, play a song on your desired device, and press continue!
           </Typography>
         </Box>
-        <Box mt={8} align="left">
+        <Box mt={3} align="left">
           <Button
             onClick={Continue}
             type="submit"

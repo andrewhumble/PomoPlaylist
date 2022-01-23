@@ -6,7 +6,22 @@ import Header from "./Header";
 import { SpotifyAuth } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css";
 
-import { Grid, Box, Typography } from "@material-ui/core";
+import { Grid, Box, Typography, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  logoStyle: {
+    fontFamily: "Montserrat, sans-serif",
+    fontWeight: "900",
+    color: "#FFFFFF",
+    fontSize: "40px",
+  },
+  logoStyleSecondary: {
+    fontFamily: "Montserrat, sans-serif",
+    fontWeight: "450",
+    color: "#FFFFFF",
+    fontSize: "40px",
+  },
+}));
 
 const Authentication = ({
   nextStep,
@@ -16,6 +31,8 @@ const Authentication = ({
   logout,
 }) => {
   var [spotifyAuthToken] = useState();
+
+  const { logoStyle, logoStyleSecondary } = useStyles();
 
   const Login = (token) => {
     handleToken({ token });
@@ -44,19 +61,37 @@ const Authentication = ({
               justifyContent="center"
               alignItems="flex-end"
             >
-              <Typography
-                component="h1"
-                variant="h4"
-                align="center"
-                style={{
-                  fontFamily: "Helvetica",
-                  fontWeight: "bold",
-                  fontSize: "30px",
-                  color: "#1DB954",
-                }}
-              >
-                welcome to pomoplaylist
-              </Typography>
+              <Box ml={0.15}>
+                <Typography
+                  variant="h6"
+                  component="h1"
+                  className={logoStyleSecondary}
+                  style={{
+                    color: "#1db954",
+                    fontWeight: "600",
+                  }}
+                >
+                  Welcome to
+                </Typography>
+              </Box>
+              <Box ml={1}>
+                <Typography variant="h6" component="h1" className={logoStyle}>
+                  Pomo
+                </Typography>
+              </Box>
+              <Box ml={0.15}>
+                <Typography
+                  variant="h6"
+                  component="h1"
+                  className={logoStyleSecondary}
+                  style={{
+                    color: "grey",
+                    fontWeight: "450",
+                  }}
+                >
+                  Playlist
+                </Typography>
+              </Box>
             </Grid>
           </Box>
           <Box>
@@ -87,15 +122,16 @@ const Authentication = ({
                     variant="h6"
                     align="center"
                     style={{
-                      fontFamily: "Helvetica",
-                      fontWeight: "",
-                      fontSize: "20px",
+                      fontFamily: "Montserrat, sans-serif",
+                      fontWeight: "300",
+                      fontSize: "25px",
+                      color: "white",
                     }}
                   >
                     sign in to continue
                   </Typography>
                 </Box>
-                <Box mt={2}>
+                <Box mt={3}>
                   <Grid container justifyContent="center" alignItems="flex-end">
                     <SpotifyAuth
                       // redirectUri="http://localhost:3000/pomoplaylist"

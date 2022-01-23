@@ -27,6 +27,9 @@ const useStyles = makeStyles({
       // hover
       borderBottom: `1px solid white`,
     },
+    ".MuiInputBase-input": {
+      color: "white",
+    },
   },
 });
 
@@ -77,7 +80,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
               fontFamily: "Helvetica",
               fontWeight: "bold",
               fontSize: "30px",
-              color: "#191414",
+              color: "white",
             }}
           >
             choose a playlist
@@ -89,7 +92,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
               <InputLabel
                 id="demo-controlled-open-select-label"
                 style={{
-                  color: "#191414",
+                  color: "white",
                 }}
               >
                 your playlist:
@@ -107,7 +110,15 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
               >
                 {values.playlists.map((value, index) => {
                   return (
-                    <MenuItem key={index} value={value[0]}>
+                    <MenuItem
+                      key={index}
+                      value={value[0]}
+                      sx={{
+                        "& .MuiButtonBase-root": {
+                          color: "black",
+                        },
+                      }}
+                    >
                       {value[0]}
                     </MenuItem>
                   );

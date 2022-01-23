@@ -88,7 +88,7 @@ const Work = ({
                 align="center"
                 style={{
                   position: "absolute",
-                  left: "35%",
+                  left: "34%",
                   top: "70%",
                   fontFamily: "Helvetica",
                   fontWeight: "bold",

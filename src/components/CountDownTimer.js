@@ -42,8 +42,10 @@ const CountDownTimer = ({
   //const reset = () =>
   //  setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
 
+  var pauseAmt = 1000;
+
   React.useEffect(() => {
-    const timerId = setInterval(() => tick(), 1000);
+    const timerId = setInterval(() => tick(), pauseAmt);
     return () => clearInterval(timerId);
   });
 
