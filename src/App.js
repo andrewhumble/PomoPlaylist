@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Helmet>
-        <style>{"body { background-color: black; }"}</style>
+        <style>{"body { background-color: #121212; }"}</style>
       </Helmet>
       <PomoPlay />
     </div>

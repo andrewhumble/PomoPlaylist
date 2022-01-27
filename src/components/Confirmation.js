@@ -13,10 +13,16 @@ import Header from "./Header";
 const useStyles = makeStyles({
   root: {
     "& label.Mui-focused": {
-      color: "#1DB954",
+      color: "#1AD760",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#1DB954",
+      borderBottomColor: "#1AD760",
+    },
+    "& .MuiInputBase-input": {
+      color: "#ffffff",
+    },
+    "& MuiInputLabel-root": {
+      color: "#ffffff",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
@@ -65,7 +71,7 @@ const Confirmation = ({
         style={{
           position: "absolute",
           left: "50%",
-          top: "40%",
+          top: "43%",
           transform: "translate(-50%, -50%)",
         }}
         align="center"
@@ -77,10 +83,10 @@ const Confirmation = ({
             variant="h4"
             align="center"
             style={{
-              fontFamily: "Helvetica",
+              fontFamily: "Source Code Pro",
               fontWeight: "bold",
               fontSize: "30px",
-              color: "#darkgrey",
+              color: "#ffffff",
             }}
           >
             set pomodoro schedule in minutes
@@ -98,7 +104,10 @@ const Confirmation = ({
               variant="outlined"
               label="Work"
               className={classes.root}
-              inputProps={{ min: 0, style: { textAlign: "center" } }}
+              inputProps={{
+                min: 0,
+                style: { textAlign: "center", fontFamily: "Source Code Pro" },
+              }}
               InputProps={{
                 className: classes.input,
               }}
@@ -111,7 +120,10 @@ const Confirmation = ({
               variant="outlined"
               label="Short Break"
               className={classes.root}
-              inputProps={{ min: 0, style: { textAlign: "center" } }}
+              inputProps={{
+                min: 0,
+                style: { textAlign: "center", fontFamily: "Source Code Pro" },
+              }}
               InputProps={{
                 className: classes.input,
               }}
@@ -124,7 +136,10 @@ const Confirmation = ({
               variant="outlined"
               label="Long Break"
               className={classes.root}
-              inputProps={{ min: 0, style: { textAlign: "center" } }}
+              inputProps={{
+                min: 0,
+                style: { textAlign: "center", fontFamily: "Source Code Pro" },
+              }}
               InputProps={{
                 className: classes.input,
               }}
@@ -134,58 +149,60 @@ const Confirmation = ({
           </Grid>
         </Grid>
         <br />
-        <Grid
-          container
-          spacing={2}
-          justifyContent="center"
-          alignItems="flex-end"
-        >
-          <Grid item xs={12} sm={6}>
-            <Button
-              onClick={Previous}
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              style={{
-                backgroundColor: "#1DB954",
-                color: "white",
-                padding: "8px 15px",
-                fontSize: "18px",
-                fontFamily: "Montserrat, sans-serif",
-                fontWeight: "600",
-              }}
-            >
-              back
-            </Button>
+        <Box mt={1}>
+          <Grid
+            container
+            spacing={2}
+            justifyContent="center"
+            alignItems="flex-end"
+          >
+            <Grid item xs={12} sm={6}>
+              <Button
+                onClick={Previous}
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                style={{
+                  backgroundColor: "#1AD760",
+                  color: "white",
+                  padding: "8px 15px",
+                  fontSize: "18px",
+                  fontFamily: "Source Code Pro",
+                  fontWeight: "600",
+                }}
+              >
+                back
+              </Button>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Button
+                onClick={Continue}
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                style={{
+                  backgroundColor: "#1AD760",
+                  color: "white",
+                  padding: "8px 15px",
+                  fontSize: "18px",
+                  fontFamily: "Source Code Pro",
+                  fontWeight: "600",
+                }}
+              >
+                start
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Button
-              onClick={Continue}
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              style={{
-                backgroundColor: "#1DB954",
-                color: "white",
-                padding: "8px 15px",
-                fontSize: "18px",
-                fontFamily: "Montserrat, sans-serif",
-                fontWeight: "600",
-              }}
-            >
-              start
-            </Button>
-          </Grid>
-        </Grid>
-        <Box mt={5}>
+        </Box>
+        <Box mt={4}>
           <Typography
             component="h1"
             variant="h4"
             align="center"
             style={{
-              fontFamily: "Helvetica",
+              fontFamily: "Source Code Pro",
               fontSize: "15px",
               color: "grey",
             }}

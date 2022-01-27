@@ -18,12 +18,12 @@ import React, { useState, useEffect } from "react";
 
 const useStyles = makeStyles(() => ({
   desktopHeader: {
-    backgroundColor: "#000000",
+    backgroundColor: "#121212",
     paddingRight: "79px",
     paddingLeft: "100px",
   },
   mobileHeader: {
-    backgroundColor: "#000000",
+    backgroundColor: "#121212",
     paddingRight: "79px",
     paddingLeft: "0px",
   },

@@ -50,7 +50,7 @@ const Work = ({
             fontFamily: "Helvetica",
             fontWeight: "bold",
             fontSize: "200px",
-            color: "#1DB954",
+            color: "#1AD760",
           }}
         >
           <Grid direction="column" alignItems="center" justifyContent="center">
@@ -115,10 +115,10 @@ const Work = ({
             left: "50%",
             top: "40%",
             transform: "translate(-50%, -50%)",
-            fontFamily: "Helvetica",
+            fontFamily: "Source Code Pro",
             fontWeight: "bold",
             fontSize: "80px",
-            color: "#1DB954",
+            color: "#1AD760",
           }}
         >
           <Grid direction="column" alignItems="center" justifyContent="center">
@@ -131,7 +131,7 @@ const Work = ({
                   position: "absolute",
                   left: "37%",
                   top: "25%",
-                  fontFamily: "Helvetica",
+                  fontFamily: "Source Code Pro",
                   fontWeight: "bold",
                   fontSize: "15px",
                   color: "#191414",
@@ -158,7 +158,7 @@ const Work = ({
                   position: "absolute",
                   left: "23%",
                   top: "70%",
-                  fontFamily: "Helvetica",
+                  fontFamily: "Source Code Pro",
                   fontWeight: "bold",
                   fontSize: "10px",
                   color: "darkgrey",

@@ -25,6 +25,7 @@ export default class PomoPlay extends Component {
     longBreakTime: "10",
     playing: false,
     sessions: 1,
+    showLogin: false,
   };
 
   // proceed to the next step
@@ -60,6 +61,10 @@ export default class PomoPlay extends Component {
   sameStep = () => {
     const { step } = this.state;
     this.setState({ step: step });
+  };
+
+  handleTitleAnimation = () => {
+    this.setState({ showLogin: true });
   };
 
   // handle field change
@@ -162,6 +167,7 @@ export default class PomoPlay extends Component {
       playing,
       sessions,
       pausePosition,
+      showLogin,
     } = this.state;
     const values = {
       accessToken,
@@ -175,6 +181,7 @@ export default class PomoPlay extends Component {
       playing,
       sessions,
       pausePosition,
+      showLogin,
     };
 
     switch (step) {
@@ -189,6 +196,7 @@ export default class PomoPlay extends Component {
             logout={this.logout}
             homeClick={this.homeClick}
             clearToken={this.clearToken}
+            handleTitleAnimation={this.handleTitleAnimation}
           />
         );
       case 2:

@@ -27,9 +27,9 @@ const useStyles = makeStyles({
       // hover
       borderBottom: `1px solid white`,
     },
-    ".MuiInputBase-input": {
-      color: "white",
-    },
+  },
+  stepStyle: {
+    color: "#1dd760",
   },
 });
 
@@ -66,7 +66,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
         style={{
           position: "absolute",
           left: "50%",
-          top: "42%",
+          top: "43%",
           transform: "translate(-50%, -50%)",
           padding: "100",
         }}
@@ -77,7 +77,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
             variant="h4"
             align="center"
             style={{
-              fontFamily: "Helvetica",
+              fontFamily: "Source Code Pro",
               fontWeight: "bold",
               fontSize: "30px",
               color: "white",
@@ -93,6 +93,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                 id="demo-controlled-open-select-label"
                 style={{
                   color: "white",
+                  fontFamily: "Source Code Pro",
                 }}
               >
                 your playlist:
@@ -145,7 +146,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                 color: "white",
                 padding: "8px 15px",
                 fontSize: "18px",
-                fontFamily: "Montserrat, sans-serif",
+                fontFamily: "Source Code Pro",
                 fontWeight: "600",
               }}
             >
@@ -163,7 +164,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                 color: "white",
                 padding: "8px 15px",
                 fontSize: "18px",
-                fontFamily: "Montserrat, sans-serif",
+                fontFamily: "Source Code Pro",
                 fontWeight: "600",
               }}
             >

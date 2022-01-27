@@ -1,0 +1,33 @@
+:local(.authButton) {
+  transition-duration: 300ms;
+  font-family: "Source Code Pro", Arial, Helvetica, sans-serif;
+  background-color: #1db954;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  border: none;
+  border-radius: 0.2rem;
+  font-size: 20px;
+}
+
+:local(.selectStyle) {
+  font: inherit;
+  color: white;
+  width: 100%;
+  border: 0;
+  height: 1.1876em;
+  margin: 0;
+  display: block;
+  padding: 6px 0 7px;
+  min-width: 0;
+  background: none;
+  box-sizing: content-box;
+  animation-name: mui-auto-fill-cancel;
+  letter-spacing: inherit;
+  animation-duration: 10ms;
+  -webkit-tap-highlight-color: transparent;
+}
