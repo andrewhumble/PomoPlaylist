@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CountDownTimer from "./CountDownTimer";
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, Box } from "@material-ui/core";
 import Header from "./Header";
 
 const Work = ({
@@ -53,53 +53,47 @@ const Work = ({
             color: "#1AD760",
           }}
         >
-          <Grid direction="column" alignItems="center" justifyContent="center">
-            <Grid>
-              <Typography
-                component="h1"
-                variant="h4"
-                align="center"
-                style={{
-                  position: "absolute",
-                  left: "40%",
-                  top: "25%",
-                  fontFamily: "Helvetica",
-                  fontWeight: "bold",
-                  fontSize: "30px",
-                  color: "#191414",
-                }}
-              >
-                get to work
-              </Typography>
-            </Grid>
-            <Grid>
-              <CountDownTimer
-                hoursMinSecs={hoursMinSecs}
-                setStep={setStep}
-                values={values}
-                pause={pause}
-                play={play}
-                incrementSessionCount={incrementSessionCount}
-              />
-            </Grid>
-            <Grid>
-              <Typography
-                component="p"
-                align="center"
-                style={{
-                  position: "absolute",
-                  left: "34%",
-                  top: "70%",
-                  fontFamily: "Helvetica",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                  color: "darkgrey",
-                }}
-              >
-                number of Pomodoros completed: {values.sessions - 1}
-              </Typography>
-            </Grid>
-          </Grid>
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            style={{
+              position: "absolute",
+              left: "40%",
+              top: "25%",
+              fontFamily: "Helvetica",
+              fontWeight: "bold",
+              fontSize: "30px",
+              color: "#ffffff",
+            }}
+          >
+            get to work
+          </Typography>
+          <Box mt={12} mb={12}>
+            <CountDownTimer
+              hoursMinSecs={hoursMinSecs}
+              setStep={setStep}
+              values={values}
+              pause={pause}
+              play={play}
+              incrementSessionCount={incrementSessionCount}
+            />
+          </Box>
+          <Typography
+            component="p"
+            align="center"
+            style={{
+              position: "absolute",
+              left: "34%",
+              top: "70%",
+              fontFamily: "Helvetica",
+              fontWeight: "bold",
+              fontSize: "15px",
+              color: "darkgrey",
+            }}
+          >
+            number of Pomodoros completed: {values.sessions - 1}
+          </Typography>
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 :local(.authButton) {
   transition-duration: 300ms;
   font-family: "Source Code Pro", Arial, Helvetica, sans-serif;
+  font-weight: 600;
   background-color: #1db954;
   color: #fff;
   cursor: pointer;

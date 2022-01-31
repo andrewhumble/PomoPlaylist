@@ -9,7 +9,7 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-const FadeIn = ({ duration = 1000, delay = 3000, children, ...delegated }) => {
+const FadeIn = ({ duration = 1000, delay = 2750, children, ...delegated }) => {
   return (
     <Wrapper
       {...delegated}

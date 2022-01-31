@@ -3,15 +3,52 @@ import React from "react";
 import "react-spotify-auth/dist/index.css";
 import Header from "./Header";
 
-import { Button, Box, Typography, Grid, Divider } from "@material-ui/core";
+import {
+  Button,
+  Box,
+  Typography,
+  Grid,
+  Divider,
+  makeStyles,
+} from "@material-ui/core";
 import "rsuite/dist/rsuite.min.css";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import { ReactNotifications, Store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+
+const useStyles = makeStyles((theme) => ({
+  alertButton: {
+    color: "#1AD760",
+    "&:hover": {
+      color: "#139141",
+    },
+  },
+}));
 
 const Setup = ({ nextStep, logout, values }) => {
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
   };
+
+  const Notify = (e) => {
+    Store.addNotification({
+      title: "Why play a song?",
+      message:
+        "Playing a song activates Spotify so PomoPlaylist knows which device to connect to.",
+      type: "success",
+      insert: "top",
+      container: "top-center",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    });
+  };
+
+  const classes = useStyles();
 
   const [activePage, setActivePage] = React.useState(5);
 
@@ -28,40 +65,26 @@ const Setup = ({ nextStep, logout, values }) => {
           padding: "100",
         }}
       >
-        <Box mb={1} mt={2}>
-          <Typography
-            component="h1"
-            variant="h4"
-            align="left"
-            style={{
-              fontFamily: "Source Code Pro",
-              fontWeight: "bold",
-              fontSize: "30px",
-              color: "#1AD760",
-              textAlign: "top",
-            }}
-          >
-            open Spotify on your device and play a song
-          </Typography>
-        </Box>
-        <Box mt={2}>
-          <Typography
-            component="h1"
-            variant="h4"
-            align="left"
-            style={{
-              fontFamily: "Source Code Pro",
-              fontSize: "17px",
-              color: "lightgrey",
-            }}
-          >
-            In order for pomoplaylist to know which device to connect to, you
-            need to play a song (it can be anything) on your desired device.
-            This sends a signal to the program so it knows which device to
-            connect to.
-          </Typography>
-        </Box>
-        <Box mt={3} align="left">
+        <Typography
+          component="h1"
+          variant="h4"
+          align="center"
+          style={{
+            fontFamily: "Source Code Pro",
+            fontWeight: "bold",
+            fontSize: "50px",
+            color: "#ffffff",
+            textAlign: "top",
+          }}
+        >
+          Play a song on your Spotify device{""}
+          <Button
+            className={classes.alertButton}
+            onClick={Notify}
+            startIcon={<HelpOutlineIcon />}
+          ></Button>
+        </Typography>
+        <Box mt={4} align="center">
           <Button
             onClick={Continue}
             type="submit"
@@ -71,7 +94,7 @@ const Setup = ({ nextStep, logout, values }) => {
               backgroundColor: "#1AD760",
               color: "white",
               padding: "6px 12px",
-              fontSize: "18px",
+              fontSize: "20px",
               fontFamily: "Source Code Pro",
               fontWeight: "600",
             }}
