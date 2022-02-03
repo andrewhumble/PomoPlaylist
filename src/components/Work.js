@@ -49,7 +49,7 @@ const Work = ({
             transform: "translate(-50%, -50%)",
             fontFamily: "Helvetica",
             fontWeight: "bold",
-            fontSize: "200px",
+            fontSize: "15vw",
             color: "#1AD760",
           }}
         >
@@ -70,7 +70,7 @@ const Work = ({
                   style={{
                     fontFamily: "Helvetica",
                     fontWeight: "bold",
-                    fontSize: "40px",
+                    fontSize: "4vw",
                     color: "#ffffff",
                   }}
                 >
@@ -96,7 +96,7 @@ const Work = ({
                   style={{
                     fontFamily: "Helvetica",
                     fontWeight: "bold",
-                    fontSize: "15px",
+                    fontSize: "2vw",
                     color: "darkgrey",
                   }}
                 >
@@ -118,34 +118,40 @@ const Work = ({
           style={{
             position: "absolute",
             left: "50%",
-            top: "40%",
+            top: "45%",
             transform: "translate(-50%, -50%)",
-            fontFamily: "Source Code Pro",
+            fontFamily: "Helvetica",
             fontWeight: "bold",
-            fontSize: "80px",
+            fontSize: "15vw",
             color: "#1AD760",
           }}
         >
-          <Grid direction="column" alignItems="center" justifyContent="center">
-            <Grid>
-              <Typography
-                component="h1"
-                variant="h4"
-                align="center"
-                style={{
-                  position: "absolute",
-                  left: "37%",
-                  top: "25%",
-                  fontFamily: "Source Code Pro",
-                  fontWeight: "bold",
-                  fontSize: "15px",
-                  color: "#191414",
-                }}
-              >
-                get to work
-              </Typography>
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            style={{ minHeight: "100vh" }}
+          >
+            <Grid item>
+              <Box mb={-4}>
+                <Typography
+                  component="h1"
+                  variant="h4"
+                  align="center"
+                  style={{
+                    fontFamily: "Helvetica",
+                    fontWeight: "bold",
+                    fontSize: "4vw",
+                    color: "#ffffff",
+                  }}
+                >
+                  get to work
+                </Typography>
+              </Box>
             </Grid>
-            <Grid>
+            <Grid item>
               <CountDownTimer
                 hoursMinSecs={hoursMinSecs}
                 setStep={setStep}
@@ -155,22 +161,21 @@ const Work = ({
                 incrementSessionCount={incrementSessionCount}
               />
             </Grid>
-            <Grid>
-              <Typography
-                component="p"
-                align="center"
-                style={{
-                  position: "absolute",
-                  left: "23%",
-                  top: "70%",
-                  fontFamily: "Source Code Pro",
-                  fontWeight: "bold",
-                  fontSize: "10px",
-                  color: "darkgrey",
-                }}
-              >
-                number of Pomodoros completed: {values.sessions - 1}
-              </Typography>
+            <Grid item>
+              <Box mt={-4}>
+                <Typography
+                  component="p"
+                  align="center"
+                  style={{
+                    fontFamily: "Helvetica",
+                    fontWeight: "bold",
+                    fontSize: "2vw",
+                    color: "darkgrey",
+                  }}
+                >
+                  number of Pomodoros completed: {values.sessions - 1}
+                </Typography>
+              </Box>
             </Grid>
           </Grid>
         </div>
