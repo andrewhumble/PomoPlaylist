@@ -114,6 +114,10 @@ export default class PomoPlay extends Component {
       })
       .catch((e) => {
         console.log(e);
+        Cookies.remove("spotifyAuthToken", {
+          path: "react-spotify-auth",
+        });
+        window.location = "/pomoplaylist";
       });
   };
 
@@ -202,11 +206,16 @@ export default class PomoPlay extends Component {
       case 2:
         return (
           <Setup
-            prevStep={this.prevStep}
             nextStep={this.nextStep}
+            sameStep={this.sameStep}
+            prevStep={this.prevStep}
             values={values}
+            handleToken={this.handleToken}
+            getUserPlaylists={this.getUserPlaylists}
             logout={this.logout}
             homeClick={this.homeClick}
+            clearToken={this.clearToken}
+            handleTitleAnimation={this.handleTitleAnimation}
           />
         );
       case 3:

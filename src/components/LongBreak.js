@@ -13,7 +13,7 @@ const LongBreak = ({
   incrementSessionCount,
   setStep,
 }) => {
-  const hoursMinSecs = { hours: 0, minutes: values.longBreakTime, seconds: 7 };
+  const hoursMinSecs = { hours: 0, minutes: values.longBreakTime, seconds: 0 };
 
   return (
     <div>

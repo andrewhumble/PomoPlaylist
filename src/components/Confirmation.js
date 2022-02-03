@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Grid,
-  Button,
-  TextField,
-  Typography,
-  Box,
-} from "@material-ui/core";
+import { Grid, Button, TextField, Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Header from "./Header";
 
@@ -65,154 +58,183 @@ const Confirmation = ({
   };
 
   return (
-    <Container component="main">
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: "100vh" }}
+    >
       <Header logout={logout} values={values} />
       <div
         style={{
           position: "absolute",
           left: "50%",
-          top: "43%",
+          top: "50%",
           transform: "translate(-50%, -50%)",
+          padding: "100",
         }}
         align="center"
         className="App"
       >
-        <Box mb={4}>
-          <Typography
-            component="h1"
-            variant="h4"
-            align="center"
-            style={{
-              fontFamily: "Source Code Pro",
-              fontWeight: "bold",
-              fontSize: "30px",
-              color: "#ffffff",
-            }}
-          >
-            set pomodoro schedule in minutes
-          </Typography>
-        </Box>
-        <Grid
-          container
-          direction={"row"}
-          spacing={2}
-          justifyContent="center"
-          alignItems="flex-end"
-        >
-          <Grid item>
-            <TextField
-              variant="outlined"
-              label="Work"
-              className={classes.root}
-              inputProps={{
-                min: 0,
-                style: { textAlign: "center", fontFamily: "Source Code Pro" },
+        <Grid item>
+          <Box mb={5}>
+            <Typography
+              component="h1"
+              variant="h4"
+              align="center"
+              style={{
+                fontFamily: "Source Code Pro",
+                fontWeight: "bold",
+                fontSize: "40px",
+                color: "#ffffff",
               }}
-              InputProps={{
-                className: classes.input,
+            >
+              set your pomodoro schedule
+            </Typography>
+            <Typography
+              component="h1"
+              variant="h4"
+              align="center"
+              style={{
+                fontFamily: "Source Code Pro",
+                fontWeight: "bold",
+                fontSize: "20px",
+                color: "grey",
               }}
-              defaultValue="25"
-              onChange={handleChange("workTime")}
-            ></TextField>
-          </Grid>
-          <Grid item>
-            <TextField
-              variant="outlined"
-              label="Short Break"
-              className={classes.root}
-              inputProps={{
-                min: 0,
-                style: { textAlign: "center", fontFamily: "Source Code Pro" },
-              }}
-              InputProps={{
-                className: classes.input,
-              }}
-              defaultValue="5"
-              onChange={handleChange("shortBreakTime")}
-            ></TextField>
-          </Grid>
-          <Grid item>
-            <TextField
-              variant="outlined"
-              label="Long Break"
-              className={classes.root}
-              inputProps={{
-                min: 0,
-                style: { textAlign: "center", fontFamily: "Source Code Pro" },
-              }}
-              InputProps={{
-                className: classes.input,
-              }}
-              defaultValue="10"
-              onChange={handleChange("longBreakTime")}
-            ></TextField>
-          </Grid>
+            >
+              (in minutes)
+            </Typography>
+          </Box>
         </Grid>
-        <br />
-        <Box mt={1}>
+        <Grid item>
           <Grid
             container
+            direction={"row"}
             spacing={2}
             justifyContent="center"
             alignItems="flex-end"
           >
-            <Grid item xs={12} sm={6}>
-              <Button
-                onClick={Previous}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                style={{
-                  backgroundColor: "#1AD760",
-                  color: "white",
-                  padding: "8px 15px",
-                  fontSize: "18px",
-                  fontFamily: "Source Code Pro",
-                  fontWeight: "600",
+            <Grid item>
+              <TextField
+                variant="outlined"
+                label="Work"
+                className={classes.root}
+                inputProps={{
+                  min: 0,
+                  style: { textAlign: "center", fontFamily: "Source Code Pro" },
                 }}
-              >
-                back
-              </Button>
+                InputProps={{
+                  className: classes.input,
+                }}
+                defaultValue="25"
+                onChange={handleChange("workTime")}
+              ></TextField>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <Button
-                onClick={Continue}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                style={{
-                  backgroundColor: "#1AD760",
-                  color: "white",
-                  padding: "8px 15px",
-                  fontSize: "18px",
-                  fontFamily: "Source Code Pro",
-                  fontWeight: "600",
+            <Grid item>
+              <TextField
+                variant="outlined"
+                label="Short Break"
+                className={classes.root}
+                inputProps={{
+                  min: 0,
+                  style: { textAlign: "center", fontFamily: "Source Code Pro" },
                 }}
-              >
-                start
-              </Button>
+                InputProps={{
+                  className: classes.input,
+                }}
+                defaultValue="5"
+                onChange={handleChange("shortBreakTime")}
+              ></TextField>
+            </Grid>
+            <Grid item>
+              <TextField
+                variant="outlined"
+                label="Long Break"
+                className={classes.root}
+                inputProps={{
+                  min: 0,
+                  style: { textAlign: "center", fontFamily: "Source Code Pro" },
+                }}
+                InputProps={{
+                  className: classes.input,
+                }}
+                defaultValue="10"
+                onChange={handleChange("longBreakTime")}
+              ></TextField>
             </Grid>
           </Grid>
-        </Box>
-        <Box mt={4}>
-          <Typography
-            component="h1"
-            variant="h4"
-            align="center"
-            style={{
-              fontFamily: "Source Code Pro",
-              fontSize: "15px",
-              color: "grey",
-            }}
-          >
-            a standard Pomodoro cycle is a 25/5/10 minute split for work, short
-            break, and long break
-          </Typography>
-        </Box>
+        </Grid>
+        <Grid item>
+          <br />
+          <Box mt={3}>
+            <Grid
+              container
+              spacing={2}
+              justifyContent="center"
+              alignItems="flex-end"
+            >
+              <Grid item xs={12} sm={6}>
+                <Button
+                  onClick={Previous}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  style={{
+                    backgroundColor: "#1AD760",
+                    color: "white",
+                    padding: "8px 15px",
+                    fontSize: "18px",
+                    fontFamily: "Source Code Pro",
+                    fontWeight: "600",
+                  }}
+                >
+                  back
+                </Button>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Button
+                  onClick={Continue}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  style={{
+                    backgroundColor: "#1AD760",
+                    color: "white",
+                    padding: "8px 15px",
+                    fontSize: "18px",
+                    fontFamily: "Source Code Pro",
+                    fontWeight: "600",
+                  }}
+                >
+                  start
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Box mt={4}>
+            <Typography
+              component="h1"
+              variant="h4"
+              align="center"
+              style={{
+                fontFamily: "Source Code Pro",
+                fontSize: "15px",
+                color: "grey",
+              }}
+            >
+              a standard Pomodoro cycle is a 25/5/10 minute split for work,
+              short break, and long break
+            </Typography>
+          </Box>
+        </Grid>
       </div>
-    </Container>
+    </Grid>
   );
 };
 

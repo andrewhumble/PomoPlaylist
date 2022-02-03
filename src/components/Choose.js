@@ -66,110 +66,125 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
         style={{
           position: "absolute",
           left: "50%",
-          top: "43%",
+          top: "48%",
           transform: "translate(-50%, -50%)",
           padding: "100",
         }}
       >
-        <Box mb={3}>
-          <Typography
-            component="h1"
-            variant="h4"
-            align="center"
-            style={{
-              fontFamily: "Source Code Pro",
-              fontWeight: "bold",
-              fontSize: "30px",
-              color: "white",
-            }}
-          >
-            choose a playlist
-          </Typography>
-        </Box>
-        <Box mb={5}>
-          <form>
-            <FormControl style={{ minWidth: 300 }}>
-              <InputLabel
-                id="demo-controlled-open-select-label"
-                style={{
-                  color: "white",
-                  fontFamily: "Source Code Pro",
-                }}
-              >
-                your playlist:
-              </InputLabel>
-              <Select
-                labelId="select-playlist"
-                id="select-playlist"
-                name="values.choice"
-                open={open}
-                onClose={handleClose}
-                onOpen={handleOpen}
-                value={values.choice ? values.choice : ""}
-                onChange={handleChange("choice")}
-                className={classes.root}
-              >
-                {values.playlists.map((value, index) => {
-                  return (
-                    <MenuItem
-                      key={index}
-                      value={value[0]}
-                      sx={{
-                        "& .MuiButtonBase-root": {
-                          color: "black",
-                        },
-                      }}
-                    >
-                      {value[0]}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
-          </form>
-        </Box>
         <Grid
           container
-          direction={"row"}
-          spacing={2}
+          spacing={0}
+          direction="column"
+          alignItems="center"
           justifyContent="center"
-          alignItems="flex-end"
+          style={{ minHeight: "100vh" }}
         >
           <Grid item>
-            <Button
-              onClick={Previous}
-              type="submit"
-              fullWidth
-              variant="contained"
-              style={{
-                backgroundColor: "#1DB954",
-                color: "white",
-                padding: "8px 15px",
-                fontSize: "18px",
-                fontFamily: "Source Code Pro",
-                fontWeight: "600",
-              }}
-            >
-              back
-            </Button>
+            <Box mb={3}>
+              <Typography
+                component="h1"
+                variant="h4"
+                align="center"
+                style={{
+                  fontFamily: "Source Code Pro",
+                  fontWeight: "bold",
+                  fontSize: "40px",
+                  color: "white",
+                }}
+              >
+                choose a playlist
+              </Typography>
+            </Box>
           </Grid>
           <Grid item>
-            <Button
-              onClick={Continue}
-              type="submit"
-              fullWidth
-              variant="contained"
-              style={{
-                backgroundColor: "#1DB954",
-                color: "white",
-                padding: "8px 15px",
-                fontSize: "18px",
-                fontFamily: "Source Code Pro",
-                fontWeight: "600",
-              }}
+            <Box mb={5} align="center">
+              <form>
+                <FormControl style={{ minWidth: 300 }}>
+                  <InputLabel
+                    id="demo-controlled-open-select-label"
+                    style={{
+                      color: "white",
+                      fontFamily: "Source Code Pro",
+                    }}
+                  >
+                    your playlist:
+                  </InputLabel>
+                  <Select
+                    labelId="select-playlist"
+                    id="select-playlist"
+                    name="values.choice"
+                    open={open}
+                    onClose={handleClose}
+                    onOpen={handleOpen}
+                    value={values.choice ? values.choice : ""}
+                    onChange={handleChange("choice")}
+                    className={classes.root}
+                  >
+                    {values.playlists.map((value, index) => {
+                      return (
+                        <MenuItem
+                          key={index}
+                          value={value[0]}
+                          sx={{
+                            "& .MuiButtonBase-root": {
+                              color: "black",
+                            },
+                          }}
+                        >
+                          {value[0]}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </form>
+            </Box>
+          </Grid>
+          <Grid item>
+            <Grid
+              container
+              direction={"row"}
+              spacing={2}
+              justifyContent="center"
+              alignItems="flex-end"
             >
-              next
-            </Button>
+              <Grid item>
+                <Button
+                  onClick={Previous}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  style={{
+                    backgroundColor: "#1DB954",
+                    color: "white",
+                    padding: "8px 15px",
+                    fontSize: "18px",
+                    fontFamily: "Source Code Pro",
+                    fontWeight: "600",
+                  }}
+                >
+                  back
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  onClick={Continue}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  style={{
+                    backgroundColor: "#1DB954",
+                    color: "white",
+                    padding: "8px 15px",
+                    fontSize: "18px",
+                    fontFamily: "Source Code Pro",
+                    fontWeight: "600",
+                  }}
+                >
+                  next
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </div>

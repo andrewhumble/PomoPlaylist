@@ -13,7 +13,7 @@ const Success = ({
   setStep,
   logout,
 }) => {
-  const hoursMinSecs = { hours: 0, minutes: values.shortBreakTime, seconds: 6 };
+  const hoursMinSecs = { hours: 0, minutes: values.shortBreakTime, seconds: 0 };
 
   return (
     <div>

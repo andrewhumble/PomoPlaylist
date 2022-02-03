@@ -3,16 +3,9 @@ import React from "react";
 import "react-spotify-auth/dist/index.css";
 import Header from "./Header";
 
-import {
-  Button,
-  Box,
-  Typography,
-  Grid,
-  Divider,
-  makeStyles,
-} from "@material-ui/core";
+import { Button, Box, Typography, Grid, makeStyles } from "@material-ui/core";
 import "rsuite/dist/rsuite.min.css";
-import { ReactNotifications, Store } from "react-notifications-component";
+import { Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
@@ -25,7 +18,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Setup = ({ nextStep, logout, values }) => {
+const Setup = ({
+  nextStep,
+  sameStep,
+  handleToken,
+  getUserPlaylists,
+  homeClick,
+  clearToken,
+  handleTitleAnimation,
+  logout,
+  values,
+}) => {
+  const classes = useStyles();
+
   const Continue = (e) => {
     e.preventDefault();
     nextStep();
@@ -48,10 +53,6 @@ const Setup = ({ nextStep, logout, values }) => {
     });
   };
 
-  const classes = useStyles();
-
-  const [activePage, setActivePage] = React.useState(5);
-
   return (
     <div>
       <Header logout={logout} values={values} />
@@ -60,31 +61,33 @@ const Setup = ({ nextStep, logout, values }) => {
         style={{
           position: "absolute",
           left: "50%",
-          top: "43%",
+          top: "48%",
           transform: "translate(-50%, -50%)",
           padding: "100",
         }}
       >
-        <Typography
-          component="h1"
-          variant="h4"
-          align="center"
-          style={{
-            fontFamily: "Source Code Pro",
-            fontWeight: "bold",
-            fontSize: "50px",
-            color: "#ffffff",
-            textAlign: "top",
-          }}
-        >
-          Play a song on your Spotify device{""}
-          <Button
-            className={classes.alertButton}
-            onClick={Notify}
-            startIcon={<HelpOutlineIcon />}
-          ></Button>
-        </Typography>
-        <Box mt={4} align="center">
+        <Grid container alignItems="right" justifyContent="right">
+          <Typography
+            component="h1"
+            variant="h4"
+            align="left"
+            style={{
+              fontFamily: "Source Code Pro",
+              fontWeight: "bold",
+              fontSize: "40px",
+              color: "#ffffff",
+              textAlign: "top",
+            }}
+          >
+            Play a song on your Spotify device, and then press continue{""}
+            <Button
+              className={classes.alertButton}
+              onClick={Notify}
+              startIcon={<HelpOutlineIcon />}
+            ></Button>
+          </Typography>
+        </Grid>
+        <Box mt={4} align="right">
           <Button
             onClick={Continue}
             type="submit"

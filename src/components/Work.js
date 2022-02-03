@@ -13,7 +13,7 @@ const Work = ({
   incrementSessionCount,
   setStep,
 }) => {
-  const hoursMinSecs = { hours: 0, minutes: values.workTime, seconds: 5 };
+  const hoursMinSecs = { hours: 0, minutes: values.workTime, seconds: 0 };
 
   const [state, setState] = useState({
     mobileView: false,
@@ -45,7 +45,7 @@ const Work = ({
           style={{
             position: "absolute",
             left: "50%",
-            top: "40%",
+            top: "45%",
             transform: "translate(-50%, -50%)",
             fontFamily: "Helvetica",
             fontWeight: "bold",
@@ -53,47 +53,58 @@ const Work = ({
             color: "#1AD760",
           }}
         >
-          <Typography
-            component="h1"
-            variant="h4"
-            align="center"
-            style={{
-              position: "absolute",
-              left: "40%",
-              top: "25%",
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-              fontSize: "30px",
-              color: "#ffffff",
-            }}
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            style={{ minHeight: "100vh" }}
           >
-            get to work
-          </Typography>
-          <Box mt={12} mb={12}>
-            <CountDownTimer
-              hoursMinSecs={hoursMinSecs}
-              setStep={setStep}
-              values={values}
-              pause={pause}
-              play={play}
-              incrementSessionCount={incrementSessionCount}
-            />
-          </Box>
-          <Typography
-            component="p"
-            align="center"
-            style={{
-              position: "absolute",
-              left: "34%",
-              top: "70%",
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-              fontSize: "15px",
-              color: "darkgrey",
-            }}
-          >
-            number of Pomodoros completed: {values.sessions - 1}
-          </Typography>
+            <Grid item>
+              <Box mb={-4}>
+                <Typography
+                  component="h1"
+                  variant="h4"
+                  align="center"
+                  style={{
+                    fontFamily: "Helvetica",
+                    fontWeight: "bold",
+                    fontSize: "40px",
+                    color: "#ffffff",
+                  }}
+                >
+                  get to work
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item>
+              <CountDownTimer
+                hoursMinSecs={hoursMinSecs}
+                setStep={setStep}
+                values={values}
+                pause={pause}
+                play={play}
+                incrementSessionCount={incrementSessionCount}
+              />
+            </Grid>
+            <Grid item>
+              <Box mt={-4}>
+                <Typography
+                  component="p"
+                  align="center"
+                  style={{
+                    fontFamily: "Helvetica",
+                    fontWeight: "bold",
+                    fontSize: "15px",
+                    color: "darkgrey",
+                  }}
+                >
+                  number of Pomodoros completed: {values.sessions - 1}
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
         </div>
       </div>
     );

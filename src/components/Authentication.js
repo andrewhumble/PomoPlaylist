@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: "Source Code Pro",
     fontWeight: "900",
     color: "#FFFFFF",
-    fontSize: "50px",
+    fontSize: "60px",
   },
   stepStyle: {
     color: "#1dd760",
