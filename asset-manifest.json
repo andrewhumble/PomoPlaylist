@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pomoplaylist/static/css/main.7d4c491b.css",
-    "main.js": "/pomoplaylist/static/js/main.dc507b46.js",
+    "main.css": "/pomoplaylist/static/css/main.67accef5.css",
+    "main.js": "/pomoplaylist/static/js/main.a3942de1.js",
     "static/js/787.1c8cdbda.chunk.js": "/pomoplaylist/static/js/787.1c8cdbda.chunk.js",
     "static/media/favicon.ico": "/pomoplaylist/static/media/favicon.3d159f8839ada15d13d3.ico",
     "index.html": "/pomoplaylist/index.html",
-    "main.7d4c491b.css.map": "/pomoplaylist/static/css/main.7d4c491b.css.map",
-    "main.dc507b46.js.map": "/pomoplaylist/static/js/main.dc507b46.js.map",
+    "main.67accef5.css.map": "/pomoplaylist/static/css/main.67accef5.css.map",
+    "main.a3942de1.js.map": "/pomoplaylist/static/js/main.a3942de1.js.map",
     "787.1c8cdbda.chunk.js.map": "/pomoplaylist/static/js/787.1c8cdbda.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d4c491b.css",
-    "static/js/main.dc507b46.js"
+    "static/css/main.67accef5.css",
+    "static/js/main.a3942de1.js"
   ]
 }
