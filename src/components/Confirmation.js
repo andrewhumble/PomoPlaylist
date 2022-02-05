@@ -30,9 +30,9 @@ const useStyles = makeStyles({
     },
   },
   input: {
-    height: 75,
-    width: 150,
-    fontSize: "50px",
+    height: "7vw",
+    width: "14vw",
+    fontSize: "4vw",
     textAlign: "center",
   },
 });
@@ -87,7 +87,7 @@ const Confirmation = ({
               style={{
                 fontFamily: "Source Code Pro",
                 fontWeight: "bold",
-                fontSize: "40px",
+                fontSize: "3vw",
                 color: "#ffffff",
               }}
             >
@@ -100,7 +100,7 @@ const Confirmation = ({
               style={{
                 fontFamily: "Source Code Pro",
                 fontWeight: "bold",
-                fontSize: "20px",
+                fontSize: "1.5vw",
                 color: "grey",
               }}
             >
@@ -172,6 +172,7 @@ const Confirmation = ({
             <Grid
               container
               spacing={2}
+              direction="row"
               justifyContent="center"
               alignItems="flex-end"
             >
@@ -185,8 +186,8 @@ const Confirmation = ({
                   style={{
                     backgroundColor: "#1AD760",
                     color: "white",
-                    padding: "8px 15px",
-                    fontSize: "18px",
+                    padding: "0.6vw 1.7vw",
+                    fontSize: "1.3vw",
                     fontFamily: "Source Code Pro",
                     fontWeight: "600",
                   }}
@@ -204,8 +205,8 @@ const Confirmation = ({
                   style={{
                     backgroundColor: "#1AD760",
                     color: "white",
-                    padding: "8px 15px",
-                    fontSize: "18px",
+                    padding: "0.6vw 1.7vw",
+                    fontSize: "1.3vw",
                     fontFamily: "Source Code Pro",
                     fontWeight: "600",
                   }}
@@ -224,7 +225,7 @@ const Confirmation = ({
               align="center"
               style={{
                 fontFamily: "Source Code Pro",
-                fontSize: "15px",
+                fontSize: "1.2vw",
                 color: "grey",
               }}
             >

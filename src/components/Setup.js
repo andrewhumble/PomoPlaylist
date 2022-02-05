@@ -74,7 +74,7 @@ const Setup = ({
             style={{
               fontFamily: "Source Code Pro",
               fontWeight: "bold",
-              fontSize: "40px",
+              fontSize: "3vw",
               color: "#ffffff",
               textAlign: "top",
             }}
@@ -96,8 +96,8 @@ const Setup = ({
             style={{
               backgroundColor: "#1AD760",
               color: "white",
-              padding: "6px 12px",
-              fontSize: "20px",
+              padding: "0.4vw 0.8vw",
+              fontSize: "1.5vw",
               fontFamily: "Source Code Pro",
               fontWeight: "600",
             }}

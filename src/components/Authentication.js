@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: "Source Code Pro",
     fontWeight: "900",
     color: "#FFFFFF",
-    fontSize: "60px",
+    fontSize: "4vw",
   },
   stepStyle: {
     color: "#1dd760",
@@ -66,7 +66,7 @@ const Authentication = ({
                 justifyContent="center"
                 alignItems="center"
               >
-                <img src={logoImg} alt="Logo" width="50" height="50" />
+                <img src={logoImg} alt="Logo" width="35vw" height="35vw" />
                 <Box ml={2}>
                   <Typography variant="h6" component="h1" className={logoStyle}>
                     <Typist
@@ -90,18 +90,6 @@ const Authentication = ({
           <Box>
             {Cookies.get("spotifyAuthToken") ? (
               <Box>
-                <Typography
-                  component="h6"
-                  variant="h6"
-                  align="center"
-                  style={{
-                    fontFamily: "Source Code Pro",
-                    fontWeight: "",
-                    fontSize: "20px",
-                  }}
-                >
-                  logged in as
-                </Typography>
                 <SpotifyApiContext.Provider value={spotifyAuthToken}>
                   {Login({ spotifyAuthToken })}
                 </SpotifyApiContext.Provider>
@@ -116,13 +104,13 @@ const Authentication = ({
                       justifyContent="center"
                       alignItems="flex-end"
                       style={{
-                        fontSize: "25px",
+                        fontSize: "2vw",
                         fontFamily: "Source Code Pro",
                       }}
                     >
                       <SpotifyAuth
-                        // redirectUri="http://localhost:3000/pomoplaylist"
-                        redirectUri="https://andrewhumble.github.io/pomoplaylist"
+                        redirectUri="http://localhost:3000/pomoplaylist"
+                        // redirectUri="https://andrewhumble.github.io/pomoplaylist"
                         clientID="4e3911e72862411b8934b3ddc35e9d93"
                         scopes={[
                           "playlist-read-collaborative",

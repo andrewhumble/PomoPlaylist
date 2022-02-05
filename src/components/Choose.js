@@ -17,15 +17,15 @@ const useStyles = makeStyles({
   root: {
     "&:before": {
       // normal
-      borderBottom: "1px solid green",
+      borderBottom: "0.1vw solid green",
     },
     "&:after": {
       // focused
-      borderBottom: `1px solid green`,
+      borderBottom: `0.1vw solid green`,
     },
     "&:hover:not(.Mui-disabled):not(.Mui-focused):not(.Mui-error):before": {
       // hover
-      borderBottom: `1px solid white`,
+      borderBottom: `0.1vw solid white`,
     },
   },
   stepStyle: {
@@ -88,7 +88,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                 style={{
                   fontFamily: "Source Code Pro",
                   fontWeight: "bold",
-                  fontSize: "40px",
+                  fontSize: "3vw",
                   color: "white",
                 }}
               >
@@ -99,7 +99,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
           <Grid item>
             <Box mb={5} align="center">
               <form>
-                <FormControl style={{ minWidth: 300 }}>
+                <FormControl style={{ minWidth: "30vw" }}>
                   <InputLabel
                     id="demo-controlled-open-select-label"
                     style={{
@@ -157,8 +157,8 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                   style={{
                     backgroundColor: "#1DB954",
                     color: "white",
-                    padding: "8px 15px",
-                    fontSize: "18px",
+                    padding: "0.6vw 1.7vw",
+                    fontSize: "1.3vw",
                     fontFamily: "Source Code Pro",
                     fontWeight: "600",
                   }}
@@ -175,8 +175,8 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                   style={{
                     backgroundColor: "#1DB954",
                     color: "white",
-                    padding: "8px 15px",
-                    fontSize: "18px",
+                    padding: "0.6vw 1.7vw",
+                    fontSize: "1.3vw",
                     fontFamily: "Source Code Pro",
                     fontWeight: "600",
                   }}
