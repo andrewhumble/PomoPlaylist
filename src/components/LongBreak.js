@@ -26,7 +26,7 @@ const LongBreak = ({
           transform: "translate(-50%, -50%)",
           fontFamily: "Source Code Pro",
           fontWeight: "bold",
-          fontSize: "200px",
+          fontSize: "14vw",
           color: "#DB4437",
         }}
       >
@@ -40,7 +40,7 @@ const LongBreak = ({
             top: "25%",
             fontFamily: "Source Code Pro",
             fontWeight: "bold",
-            fontSize: "30px",
+            fontSize: "3vw",
             color: "#4285F4",
           }}
         >
@@ -65,11 +65,11 @@ const LongBreak = ({
             top: "70%",
             fontFamily: "Source Code Pro",
             fontWeight: "bold",
-            fontSize: "15px",
+            fontSize: "1.5vw",
             color: "darkgrey",
           }}
         >
-          Number of Pomodoros completed: {values.sessions - 1}
+          number of Pomodoros completed: {values.sessions - 1}
         </Typography>
       </div>
     </div>

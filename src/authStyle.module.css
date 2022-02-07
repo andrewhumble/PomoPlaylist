@@ -9,10 +9,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 5vw;
+  min-height: 4.5vw;
   border: none;
   border-radius: 0.2rem;
-  font-size: 2vw;
+  font-size: 1.7vw;
+}
+
+:local(.authButtonMobile) {
+  transition-duration: 300ms;
+  font-family: "Source Code Pro", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  background-color: #1db954;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 12vw;
+  border: none;
+  border-radius: 0.2rem;
+  font-size: 4.25vw;
 }
 
 :local(.selectStyle) {

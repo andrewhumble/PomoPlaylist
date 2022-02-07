@@ -26,7 +26,7 @@ const Success = ({
           transform: "translate(-50%, -50%)",
           fontFamily: "Source Code Pro",
           fontWeight: "bold",
-          fontSize: "200px",
+          fontSize: "14vw",
           color: "#F4B400",
         }}
       >
@@ -40,7 +40,7 @@ const Success = ({
             top: "25%",
             fontFamily: "Source Code Pro",
             fontWeight: "bold",
-            fontSize: "30px",
+            fontSize: "3vw",
             color: "#4285F4",
           }}
         >
@@ -65,7 +65,7 @@ const Success = ({
             top: "70%",
             fontFamily: "Source Code Pro",
             fontWeight: "bold",
-            fontSize: "15px",
+            fontSize: "1.5vw",
             color: "darkgrey",
           }}
         >

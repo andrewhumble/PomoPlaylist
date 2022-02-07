@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SpotifyApiContext } from "react-spotify-api";
 import Cookies from "js-cookie";
 import Header from "./Header";
@@ -20,6 +20,12 @@ const useStyles = makeStyles(() => ({
   stepStyle: {
     color: "#1dd760",
   },
+  logoStyleMobile: {
+    fontFamily: "Source Code Pro",
+    fontWeight: "900",
+    color: "#FFFFFF",
+    fontSize: "12vw",
+  },
 }));
 
 const Authentication = ({
@@ -32,7 +38,29 @@ const Authentication = ({
 }) => {
   var [spotifyAuthToken] = useState();
 
-  const { logoStyle } = useStyles();
+  const { logoStyle, logoStyleMobile } = useStyles();
+
+  const [state, setState] = useState({
+    mobileView: false,
+  });
+
+  const { mobileView } = state;
+
+  useEffect(() => {
+    const setResponsiveness = () => {
+      return window.innerWidth < 700
+        ? setState((prevState) => ({ ...prevState, mobileView: true }))
+        : setState((prevState) => ({ ...prevState, mobileView: false }));
+    };
+
+    setResponsiveness();
+
+    window.addEventListener("resize", () => setResponsiveness());
+
+    return () => {
+      window.removeEventListener("resize", () => setResponsiveness());
+    };
+  }, []);
 
   const Login = (token) => {
     handleToken({ token });
@@ -44,93 +72,195 @@ const Authentication = ({
     console.log("testing");
   };
 
-  return (
-    <div>
-      <Header logout={logout} values={values} />
-      <div
-        className="authentication"
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "43%",
-          transform: "translate(-50%, -50%)",
-          padding: "100",
-        }}
-      >
-        <Box>
-          <Grid item>
-            <Box mb={6}>
-              <Grid
-                container
-                spacing={6}
-                justifyContent="center"
-                alignItems="center"
-              >
-                <img src={logoImg} alt="Logo" width="35vw" height="35vw" />
-                <Box ml={2}>
-                  <Typography variant="h6" component="h1" className={logoStyle}>
-                    <Typist
-                      avgTypingDelay={100}
-                      cursor={{
-                        show: true,
-                        blink: true,
-                        element: "|",
-                        hideWhenDone: true,
-                        onTypingDone: onHeaderTyped,
-                      }}
-                    >
-                      <Typist.Delay ms={500} />
-                      PomoPlaylist
-                    </Typist>
-                  </Typography>
-                </Box>
-              </Grid>
-            </Box>
-          </Grid>
+  const displayDesktop = () => {
+    return (
+      <div>
+        <Header logout={logout} values={values} />
+        <div
+          className="authentication"
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "43%",
+            transform: "translate(-50%, -50%)",
+            padding: "100",
+          }}
+        >
           <Box>
-            {Cookies.get("spotifyAuthToken") ? (
-              <Box>
-                <SpotifyApiContext.Provider value={spotifyAuthToken}>
-                  {Login({ spotifyAuthToken })}
-                </SpotifyApiContext.Provider>
-              </Box>
-            ) : (
-              // Display the login page
-              <Box>
-                <FadeIn>
-                  <Box mt={4}>
-                    <Grid
-                      container
-                      justifyContent="center"
-                      alignItems="flex-end"
-                      style={{
-                        fontSize: "2vw",
-                        fontFamily: "Source Code Pro",
-                      }}
+            <Grid item>
+              <Box mb={6}>
+                <Grid
+                  container
+                  spacing={6}
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <img src={logoImg} alt="Logo" width="45vw" height="45vw" />
+                  <Box ml={2}>
+                    <Typography
+                      variant="h6"
+                      component="h1"
+                      className={logoStyle}
                     >
-                      <SpotifyAuth
-                        // redirectUri="http://localhost:3000/pomoplaylist"
-                        redirectUri="https://andrewhumble.github.io/pomoplaylist"
-                        clientID="4e3911e72862411b8934b3ddc35e9d93"
-                        scopes={[
-                          "playlist-read-collaborative",
-                          "user-modify-playback-state",
-                          "user-read-playback-state",
-                        ]} // either style will work
-                        onAccessToken={Login}
-                        showDialog={true}
-                        btnClassName={styles.authButton}
-                      />
-                    </Grid>
+                      <Typist
+                        avgTypingDelay={100}
+                        cursor={{
+                          show: true,
+                          blink: true,
+                          element: "|",
+                          hideWhenDone: true,
+                          onTypingDone: onHeaderTyped,
+                        }}
+                      >
+                        <Typist.Delay ms={500} />
+                        PomoPlaylist
+                      </Typist>
+                    </Typography>
                   </Box>
-                </FadeIn>
+                </Grid>
               </Box>
-            )}
+            </Grid>
+            <Box>
+              {Cookies.get("spotifyAuthToken") ? (
+                <Box>
+                  <SpotifyApiContext.Provider value={spotifyAuthToken}>
+                    {Login({ spotifyAuthToken })}
+                  </SpotifyApiContext.Provider>
+                </Box>
+              ) : (
+                // Display the login page
+                <Box>
+                  <FadeIn>
+                    <Box mt={4}>
+                      <Grid
+                        container
+                        justifyContent="center"
+                        alignItems="flex-end"
+                        style={{
+                          fontSize: "2vw",
+                          fontFamily: "Source Code Pro",
+                        }}
+                      >
+                        <SpotifyAuth
+                          redirectUri="http://192.168.1.122:3000/pomoplaylist"
+                          // redirectUri="https://andrewhumble.github.io/pomoplaylist"
+                          clientID="4e3911e72862411b8934b3ddc35e9d93"
+                          scopes={[
+                            "playlist-read-collaborative",
+                            "user-modify-playback-state",
+                            "user-read-playback-state",
+                          ]} // either style will work
+                          onAccessToken={Login}
+                          showDialog={true}
+                          btnClassName={styles.authButton}
+                        />
+                      </Grid>
+                    </Box>
+                  </FadeIn>
+                </Box>
+              )}
+            </Box>
           </Box>
-        </Box>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
+
+  const displayMobile = () => {
+    return (
+      <div>
+        <Header logout={logout} values={values} />
+        <div
+          className="authentication"
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "43%",
+            transform: "translate(-50%, -50%)",
+            padding: "100",
+          }}
+        >
+          <Box>
+            <Grid item>
+              <Box mb={6}>
+                <Grid
+                  container
+                  spacing={6}
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <img src={logoImg} alt="Logo" width="45vw" height="45vw" />
+                  <Box ml={2}>
+                    <Typography
+                      variant="h6"
+                      component="h1"
+                      className={logoStyleMobile}
+                    >
+                      <Typist
+                        avgTypingDelay={100}
+                        cursor={{
+                          show: true,
+                          blink: true,
+                          element: "|",
+                          hideWhenDone: true,
+                          onTypingDone: onHeaderTyped,
+                        }}
+                      >
+                        <Typist.Delay ms={500} />
+                        PomoPlaylist
+                      </Typist>
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Box>
+            </Grid>
+            <Box>
+              {Cookies.get("spotifyAuthToken") ? (
+                <Box>
+                  <SpotifyApiContext.Provider value={spotifyAuthToken}>
+                    {Login({ spotifyAuthToken })}
+                  </SpotifyApiContext.Provider>
+                </Box>
+              ) : (
+                // Display the login page
+                <Box>
+                  <FadeIn>
+                    <Box mt={4}>
+                      <Grid
+                        container
+                        justifyContent="center"
+                        alignItems="flex-end"
+                        style={{
+                          fontSize: "2vw",
+                          fontFamily: "Source Code Pro",
+                        }}
+                      >
+                        <SpotifyAuth
+                          redirectUri="http://192.168.1.122:3000/pomoplaylist"
+                          // redirectUri="https://andrewhumble.github.io/pomoplaylist"
+                          clientID="4e3911e72862411b8934b3ddc35e9d93"
+                          scopes={[
+                            "playlist-read-collaborative",
+                            "user-modify-playback-state",
+                            "user-read-playback-state",
+                          ]} // either style will work
+                          onAccessToken={Login}
+                          showDialog={true}
+                          btnClassName={styles.authButtonMobile}
+                        />
+                      </Grid>
+                    </Box>
+                  </FadeIn>
+                </Box>
+              )}
+            </Box>
+          </Box>
+        </div>
+      </div>
+    );
+  };
+
+  return <div>{mobileView ? displayMobile() : displayDesktop()}</div>;
 };
 
 export default Authentication;

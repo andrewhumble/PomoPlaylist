@@ -26,6 +26,8 @@ export default class PomoPlay extends Component {
     playing: false,
     sessions: 1,
     showLogin: false,
+    activeDevice: false,
+    mobileView: false,
   };
 
   // proceed to the next step
@@ -114,10 +116,22 @@ export default class PomoPlay extends Component {
       })
       .catch((e) => {
         console.log(e);
-        Cookies.remove("spotifyAuthToken", {
-          path: "react-spotify-auth",
-        });
-        window.location = "/pomoplaylist";
+        Cookies.remove("spotifyAuthToken");
+      });
+  };
+
+  getActiveDevices = () => {
+    const spotifyApi = new SpotifyWebApi();
+    spotifyApi.setAccessToken(Cookies.get("spotifyAuthToken"));
+    spotifyApi
+      .getMyDevices()
+      .then((response) => {
+        if (response.devices.length !== 0) {
+          this.setState({ activeDevice: true });
+        }
+      })
+      .catch((e) => {
+        console.log(e);
       });
   };
 
@@ -172,6 +186,8 @@ export default class PomoPlay extends Component {
       sessions,
       pausePosition,
       showLogin,
+      activeDevice,
+      mobileView,
     } = this.state;
     const values = {
       accessToken,
@@ -186,6 +202,8 @@ export default class PomoPlay extends Component {
       sessions,
       pausePosition,
       showLogin,
+      activeDevice,
+      mobileView,
     };
 
     switch (step) {
@@ -216,6 +234,7 @@ export default class PomoPlay extends Component {
             homeClick={this.homeClick}
             clearToken={this.clearToken}
             handleTitleAnimation={this.handleTitleAnimation}
+            getActiveDevices={this.getActiveDevices}
           />
         );
       case 3:

@@ -8,6 +8,7 @@ import "rsuite/dist/rsuite.min.css";
 import { Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import FadeIn from "./FadeIn";
 
 const useStyles = makeStyles((theme) => ({
   alertButton: {
@@ -26,6 +27,7 @@ const Setup = ({
   homeClick,
   clearToken,
   handleTitleAnimation,
+  getActiveDevices,
   logout,
   values,
 }) => {
@@ -33,7 +35,29 @@ const Setup = ({
 
   const Continue = (e) => {
     e.preventDefault();
-    nextStep();
+    try {
+      getActiveDevices();
+      if (values.activeDevice) {
+        nextStep();
+      } else {
+        throw new Error("No active device found");
+      }
+    } catch (error) {
+      Store.addNotification({
+        title: "No active device found.",
+        message:
+          "Make sure your device is playing a song and try again. If the problem persists, logout and log back in.",
+        type: "danger",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true,
+        },
+      });
+    }
   };
 
   const Notify = (e) => {
@@ -74,7 +98,7 @@ const Setup = ({
             style={{
               fontFamily: "Source Code Pro",
               fontWeight: "bold",
-              fontSize: "3vw",
+              fontSize: "5vh",
               color: "#ffffff",
               textAlign: "top",
             }}
@@ -88,22 +112,24 @@ const Setup = ({
           </Typography>
         </Grid>
         <Box mt={4} align="right">
-          <Button
-            onClick={Continue}
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{
-              backgroundColor: "#1AD760",
-              color: "white",
-              padding: "0.4vw 0.8vw",
-              fontSize: "1.5vw",
-              fontFamily: "Source Code Pro",
-              fontWeight: "600",
-            }}
-          >
-            continue
-          </Button>
+          <FadeIn>
+            <Button
+              onClick={Continue}
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{
+                backgroundColor: "#1AD760",
+                color: "white",
+                padding: "1.5vh 3vh",
+                fontSize: "2.5vh",
+                fontFamily: "Source Code Pro",
+                fontWeight: "600",
+              }}
+            >
+              continue
+            </Button>
+          </FadeIn>
         </Box>
       </div>
     </div>

@@ -17,15 +17,19 @@ const useStyles = makeStyles({
   root: {
     "&:before": {
       // normal
-      borderBottom: "0.1vw solid green",
+      borderBottom: "0.2vh solid green",
     },
     "&:after": {
       // focused
-      borderBottom: `0.1vw solid green`,
+      borderBottom: `0.2vh solid green`,
     },
     "&:hover:not(.Mui-disabled):not(.Mui-focused):not(.Mui-error):before": {
       // hover
-      borderBottom: `0.1vw solid white`,
+      borderBottom: `0.2vh solid white`,
+    },
+    "&": {
+      color: "white",
+      fontFamily: "Source Code Pro",
     },
   },
   stepStyle: {
@@ -80,7 +84,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
           style={{ minHeight: "100vh" }}
         >
           <Grid item>
-            <Box mb={3}>
+            <Box mb={5}>
               <Typography
                 component="h1"
                 variant="h4"
@@ -88,7 +92,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                 style={{
                   fontFamily: "Source Code Pro",
                   fontWeight: "bold",
-                  fontSize: "3vw",
+                  fontSize: "6vh",
                   color: "white",
                 }}
               >
@@ -99,7 +103,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
           <Grid item>
             <Box mb={5} align="center">
               <form>
-                <FormControl style={{ minWidth: "30vw" }}>
+                <FormControl style={{ minWidth: "40vh" }}>
                   <InputLabel
                     id="demo-controlled-open-select-label"
                     style={{
@@ -122,15 +126,7 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                   >
                     {values.playlists.map((value, index) => {
                       return (
-                        <MenuItem
-                          key={index}
-                          value={value[0]}
-                          sx={{
-                            "& .MuiButtonBase-root": {
-                              color: "black",
-                            },
-                          }}
-                        >
+                        <MenuItem key={index} value={value[0]}>
                           {value[0]}
                         </MenuItem>
                       );
@@ -157,8 +153,8 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                   style={{
                     backgroundColor: "#1DB954",
                     color: "white",
-                    padding: "0.6vw 1.7vw",
-                    fontSize: "1.3vw",
+                    padding: "1.2vh 8vh",
+                    fontSize: "2.6vh",
                     fontFamily: "Source Code Pro",
                     fontWeight: "600",
                   }}
@@ -175,8 +171,8 @@ const Choose = ({ nextStep, prevStep, logout, values, handleChange }) => {
                   style={{
                     backgroundColor: "#1DB954",
                     color: "white",
-                    padding: "0.6vw 1.7vw",
-                    fontSize: "1.3vw",
+                    padding: "1.2vh 8vh",
+                    fontSize: "2.6vh",
                     fontFamily: "Source Code Pro",
                     fontWeight: "600",
                   }}

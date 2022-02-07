@@ -49,7 +49,7 @@ const Work = ({
             transform: "translate(-50%, -50%)",
             fontFamily: "Helvetica",
             fontWeight: "bold",
-            fontSize: "15vw",
+            fontSize: "14vw",
             color: "#1AD760",
           }}
         >
@@ -70,7 +70,7 @@ const Work = ({
                   style={{
                     fontFamily: "Helvetica",
                     fontWeight: "bold",
-                    fontSize: "4vw",
+                    fontSize: "3vw",
                     color: "#ffffff",
                   }}
                 >
@@ -96,7 +96,7 @@ const Work = ({
                   style={{
                     fontFamily: "Helvetica",
                     fontWeight: "bold",
-                    fontSize: "2vw",
+                    fontSize: "1.5vw",
                     color: "darkgrey",
                   }}
                 >
@@ -122,7 +122,7 @@ const Work = ({
             transform: "translate(-50%, -50%)",
             fontFamily: "Helvetica",
             fontWeight: "bold",
-            fontSize: "15vw",
+            fontSize: "20vw",
             color: "#1AD760",
           }}
         >
@@ -135,7 +135,7 @@ const Work = ({
             style={{ minHeight: "100vh" }}
           >
             <Grid item>
-              <Box mb={-4}>
+              <Box mb={0}>
                 <Typography
                   component="h1"
                   variant="h4"
@@ -143,7 +143,7 @@ const Work = ({
                   style={{
                     fontFamily: "Helvetica",
                     fontWeight: "bold",
-                    fontSize: "4vw",
+                    fontSize: "5vw",
                     color: "#ffffff",
                   }}
                 >
@@ -162,14 +162,14 @@ const Work = ({
               />
             </Grid>
             <Grid item>
-              <Box mt={-4}>
+              <Box mt={0}>
                 <Typography
                   component="p"
                   align="center"
                   style={{
                     fontFamily: "Helvetica",
                     fontWeight: "bold",
-                    fontSize: "2vw",
+                    fontSize: "3vw",
                     color: "darkgrey",
                   }}
                 >
