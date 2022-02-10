@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap");
+
 :root {
   --bg-color: #000;
   --text-color: #fff;
@@ -7,12 +9,22 @@ background {
   background-color: #282c34;
 }
 
+/* source-code-pro-regular - latin */
 @font-face {
-  font-family: "Montserrat";
-  font-style: italic;
-  font-weight: 800;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v21/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR6WXx0oJC8MLnbtrVK.woff)
-    format("woff");
-  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/source-code-pro-v20-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local(""),
+    url("./fonts/source-code-pro-v20-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("./fonts/source-code-pro-v20-latin-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("./fonts/source-code-pro-v20-latin-regular.woff") format("woff"),
+    /* Modern Browsers */ url("./fonts/source-code-pro-v20-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("./fonts/source-code-pro-v20-latin-regular.svg#SourceCodePro")
+      format("svg"); /* Legacy iOS */
 }

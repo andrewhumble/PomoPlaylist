@@ -1,3 +1,5 @@
+import "../App.css";
+
 import React, { useState, useEffect } from "react";
 import { SpotifyApiContext } from "react-spotify-api";
 import Cookies from "js-cookie";
@@ -21,7 +23,7 @@ const useStyles = makeStyles(() => ({
     color: "#1dd760",
   },
   logoStyleMobile: {
-    fontFamily: "Source Code Pro",
+    fontFamily: "Menlo",
     fontWeight: "900",
     color: "#FFFFFF",
     fontSize: "12vw",
@@ -142,8 +144,10 @@ const Authentication = ({
                         }}
                       >
                         <SpotifyAuth
-                          redirectUri="http://192.168.1.122:3000/pomoplaylist"
-                          // redirectUri="https://andrewhumble.github.io/pomoplaylist"
+                          // redirectUri="http://localhost:3000/pomoplaylist"
+                          // redirectUri="http://172.20.217.131:3000/pomoplaylist"
+                          // redirectUri="http://192.168.1.122:3000/pomoplaylist"
+                          redirectUri="https://andrewhumble.github.io/pomoplaylist"
                           clientID="4e3911e72862411b8934b3ddc35e9d93"
                           scopes={[
                             "playlist-read-collaborative",
