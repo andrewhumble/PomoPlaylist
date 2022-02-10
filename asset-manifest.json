@@ -1,16 +1,21 @@
 {
   "files": {
-    "main.css": "/pomoplaylist/static/css/main.67dfcd11.css",
-    "main.js": "/pomoplaylist/static/js/main.03c798a9.js",
+    "main.css": "/pomoplaylist/static/css/main.f73368b8.css",
+    "main.js": "/pomoplaylist/static/js/main.cfd879f1.js",
     "static/js/787.1c8cdbda.chunk.js": "/pomoplaylist/static/js/787.1c8cdbda.chunk.js",
+    "static/media/source-code-pro-v20-latin-regular.svg": "/pomoplaylist/static/media/source-code-pro-v20-latin-regular.62d7e3aab61b77ab8eb2.svg",
+    "static/media/source-code-pro-v20-latin-regular.ttf": "/pomoplaylist/static/media/source-code-pro-v20-latin-regular.d9caa9e6914e3a5b865a.ttf",
     "static/media/favicon.ico": "/pomoplaylist/static/media/favicon.3d159f8839ada15d13d3.ico",
+    "static/media/source-code-pro-v20-latin-regular.woff": "/pomoplaylist/static/media/source-code-pro-v20-latin-regular.ab8f4128bf9167a68ab1.woff",
+    "static/media/source-code-pro-v20-latin-regular.eot": "/pomoplaylist/static/media/source-code-pro-v20-latin-regular.50192f416972f4282ff8.eot",
+    "static/media/source-code-pro-v20-latin-regular.woff2": "/pomoplaylist/static/media/source-code-pro-v20-latin-regular.1f7c4cdcd1aa881f34a3.woff2",
     "index.html": "/pomoplaylist/index.html",
-    "main.67dfcd11.css.map": "/pomoplaylist/static/css/main.67dfcd11.css.map",
-    "main.03c798a9.js.map": "/pomoplaylist/static/js/main.03c798a9.js.map",
+    "main.f73368b8.css.map": "/pomoplaylist/static/css/main.f73368b8.css.map",
+    "main.cfd879f1.js.map": "/pomoplaylist/static/js/main.cfd879f1.js.map",
     "787.1c8cdbda.chunk.js.map": "/pomoplaylist/static/js/787.1c8cdbda.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.67dfcd11.css",
-    "static/js/main.03c798a9.js"
+    "static/css/main.f73368b8.css",
+    "static/js/main.cfd879f1.js"
   ]
 }
