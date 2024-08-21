@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontFamily: "Source Code Pro",
     fontWeight: "bold",
-    fontSize: "5vh",
     color: "#ffffff",
     textAlign: "left",
   },
@@ -89,7 +88,7 @@ const Setup = ({ nextStep, getActiveDevices, logout, values }) => {
       <Header logout={logout} values={values} />
       <div className={classes.container}>
         <Grid container alignItems="center" justifyContent="flex-start">
-          <Typography component="h1" variant="h4" className={classes.heading}>
+          <Typography variant="h3" className={classes.heading}>
             Play a song on your Spotify device, and then press continue.
             <Button
               className={classes.alertButton}

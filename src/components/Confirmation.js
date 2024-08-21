@@ -114,12 +114,11 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
   const renderTypography = (text, fontSize, color) => (
     <Typography
       component="h1"
-      variant="h4"
+      variant={fontSize}
       align="center"
       style={{
         fontFamily: "Source Code Pro",
         fontWeight: "bold",
-        fontSize,
         color,
       }}
     >
@@ -134,8 +133,8 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
         <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
           <Grid item>
             <Box mt={isMobile ? 8 : 0} mb={5}>
-              {renderTypography("set your pomodoro schedule", isMobile ? "5vh" : "5vh", "#ffffff")}
-              {renderTypography("(in minutes)", isMobile ? "2vh" : "2vh", "grey")}
+              {renderTypography("set your pomodoro schedule", isMobile ? "h3" : "h3", "#ffffff")}
+              {renderTypography("(in minutes)", isMobile ? "h3" : "h3", "grey")}
             </Box>
           </Grid>
           <Grid item>{renderFormFields()}</Grid>
@@ -144,7 +143,7 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
             <Box mt={4}>
               {renderTypography(
                 "a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break",
-                isMobile ? "1.5vh" : "2.4vh",
+                isMobile ? "h4" : "h4",
                 "grey"
               )}
             </Box>
