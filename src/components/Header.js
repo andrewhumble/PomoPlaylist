@@ -11,7 +11,7 @@ import {
   MenuItem,
   Link,
 } from "@material-ui/core";
-import logoImg from "/Users/andrewhumble/Documents/GitHub/pomoplaylist/src/favicon.ico";
+import logoImg from "/Users/andrewhumble/projects/pomoplaylist/src/favicon.ico";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link as RouterLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -43,6 +43,8 @@ const useStyles = makeStyles(() => ({
     },
   },
   toolbar: {
+    paddingRight: "79px",
+    paddingLeft: "100px",
     display: "flex",
     justifyContent: "space-between",
   },
@@ -56,12 +58,8 @@ const useStyles = makeStyles(() => ({
 
 const headersData = [
   {
-    label: "About Pomodoro",
+    label: "Pomodoro Who?",
     href: "/about",
-  },
-  {
-    label: "Support PomoPlaylist",
-    href: "/support",
   },
 ];
 
@@ -98,19 +96,21 @@ const Header = ({ logout }) => {
     };
   }, []);
 
+  const returnHome = () => {
+    window.location = "/pomoplaylist";
+  };
+
   const displayDesktop = () => {
     return (
-      <AppBar className={desktopHeader}>
-        <Toolbar className={toolbar}>
-          {logo}
-          <div>
-            <Grid container>
-              {getMenuButtons()}
-              {getLogoutButtons()}
-            </Grid>
-          </div>
-        </Toolbar>
-      </AppBar>
+      <Toolbar className={toolbar}>
+        {logo}
+        <div>
+          <Grid container>
+            {getMenuButtons()}
+            {getLogoutButtons()}
+          </Grid>
+        </div>
+      </Toolbar>
     );
   };
 
@@ -211,7 +211,7 @@ const Header = ({ logout }) => {
   };
 
   const logo = (
-    <div>
+    <Box onClick={returnHome} sx={{ cursor: "pointer" }}>
       <Grid container alignItems="center">
         <Box mt={0}>
           <img src={logoImg} alt="Logo" width="20" height="20" />
@@ -227,7 +227,7 @@ const Header = ({ logout }) => {
           </Typography>
         </Box>
       </Grid>
-    </div>
+    </Box>
   );
 
   return <header>{mobileView ? displayMobile() : displayDesktop()}</header>;
