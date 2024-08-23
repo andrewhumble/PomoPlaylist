@@ -5,14 +5,15 @@
   background-color: #1db954;
   color: #fff;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.125rem 0.95rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 4.5vw;
+  min-height: 3.5vw;
   border: none;
   border-radius: 0.2rem;
-  font-size: 1.7vw;
+  font-size: 1.2vw;
+  margin-top: 1vw;
 }
 
 :local(.authButtonMobile) {

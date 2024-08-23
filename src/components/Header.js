@@ -1,7 +1,6 @@
 import {
   AppBar,
   Toolbar,
-  Typography,
   makeStyles,
   Grid,
   Box,
@@ -9,9 +8,9 @@ import {
   IconButton,
   Drawer,
   MenuItem,
-  Link,
+  Link,s
 } from "@material-ui/core";
-import logoImg from "/Users/andrewhumble/projects/pomoplaylist/src/favicon.ico";
+import { ReactComponent as TomatoImg } from '../assets/tomato.svg';
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link as RouterLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
@@ -19,40 +18,38 @@ import React, { useState, useEffect } from "react";
 const useStyles = makeStyles(() => ({
   desktopHeader: {
     backgroundColor: "#121212",
-    paddingRight: "79px",
-    paddingLeft: "100px",
   },
   mobileHeader: {
     backgroundColor: "#121212",
-    paddingRight: "79px",
-    paddingLeft: "0px",
   },
   logoStyle: {
-    fontFamily: "Montserrat, sans-serif",
-    fontWeight: "900",
+    fontFamily: "Source Code Pro, sans-serif",
+    fontWeight: "bold",
     color: "#FFFFFF",
     fontSize: "20px",
   },
   menuButton: {
-    fontFamily: "Open Sans, sans-serif",
+    fontFamily: "Source Code Pro, sans-serif",
     fontWeight: 700,
     size: "18px",
-    marginLeft: "38px",
     "&:hover": {
       color: "#1AD760",
     },
   },
   toolbar: {
-    paddingRight: "79px",
-    paddingLeft: "100px",
     display: "flex",
     justifyContent: "space-between",
-  },
-  "@media (max-width: 900px)": {
-    paddingLeft: 0,
+    padding: "0 20px",
   },
   drawerContainer: {
     padding: "20px 30px",
+  },
+  logoBox: {
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
   },
 }));
 
@@ -71,6 +68,7 @@ const Header = ({ logout }) => {
     toolbar,
     drawerContainer,
     logoStyle,
+    logoBox,
   } = useStyles();
 
   const [state, setState] = useState({
@@ -103,16 +101,17 @@ const Header = ({ logout }) => {
   const displayDesktop = () => {
     return (
       <Toolbar className={toolbar}>
-        {logo}
-        <div>
-          <Grid container>
-            {getMenuButtons()}
-            {getLogoutButtons()}
+        <Grid container alignItems="center" justifyContent="space-evenly">
+          <Grid item>{getMenuButtons()}</Grid>
+          <Grid item xs={6} container justifyContent="center">
+            {logo}
           </Grid>
-        </div>
+          <Grid item>{getLogoutButtons()}</Grid>
+        </Grid>
       </Toolbar>
     );
   };
+  
 
   const displayMobile = () => {
     const handleDrawerOpen = () =>
@@ -148,7 +147,7 @@ const Header = ({ logout }) => {
             </div>
           </Drawer>
 
-          <div>{logo}</div>
+          <div className={logoBox}>{logo}</div>
         </Toolbar>
       </AppBar>
     );
@@ -196,37 +195,21 @@ const Header = ({ logout }) => {
 
   const getLogoutButtons = () => {
     return (
-      <div>
-        <Button
-          {...{
-            color: "inherit",
-            className: menuButton,
-          }}
-          onClick={onClick}
-        >
-          Log OUT
-        </Button>
-      </div>
+      <Button
+        {...{
+          color: "inherit",
+          className: menuButton,
+        }}
+        onClick={onClick}
+      >
+        Log OUT
+      </Button>
     );
   };
 
   const logo = (
-    <Box onClick={returnHome} sx={{ cursor: "pointer" }}>
-      <Grid container alignItems="center">
-        <Box mt={0}>
-          <img src={logoImg} alt="Logo" width="20" height="20" />
-        </Box>
-        <Box ml={1}>
-          <Typography variant="h6" component="h1" className={logoStyle}>
-            Pomo
-          </Typography>
-        </Box>
-        <Box ml={0.15}>
-          <Typography variant="h6" component="h1">
-            Playlist
-          </Typography>
-        </Box>
-      </Grid>
+    <Box onClick={returnHome} className={logoBox}>
+      <TomatoImg alt="Logo" width="30" height="30" />
     </Box>
   );
 

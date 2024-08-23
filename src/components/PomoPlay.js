@@ -74,7 +74,7 @@ export default class PomoPlay extends Component {
     if (Array.isArray([input])) {
       this.setState({ [input]: e.target.value });
       if ([input][0] === "choice") {
-        this.setState({ choiceId: this.state.playlistsHash[e.target.value] });
+        this.setState({ choiceId: this.state.playlistsHash[e.target.value].id });
       }
     } else {
       this.setState({ [input]: e.target.value });
@@ -105,7 +105,12 @@ export default class PomoPlay extends Component {
         var tempArr = [];
         var tempHash = {};
         for (var i = 0; i < response.items.length; i++) {
-          tempHash[response.items[i].name] = response.items[i].id;
+          tempHash[response.items[i].name] = {
+            id: response.items[i].id,
+            imageUrl: response.items[i].images[0].url,
+            length: response.items[i].tracks.total,
+            link: response.items[i].external_urls.spotify
+          };
           var tempObj = [];
           tempObj.push(response.items[i].name);
           tempObj.push(response.items[i].id);
@@ -117,21 +122,6 @@ export default class PomoPlay extends Component {
       .catch((e) => {
         console.log(e);
         Cookies.remove("spotifyAuthToken");
-      });
-  };
-
-  getActiveDevices = () => {
-    const spotifyApi = new SpotifyWebApi();
-    spotifyApi.setAccessToken(Cookies.get("spotifyAuthToken"));
-    spotifyApi
-      .getMyDevices()
-      .then((response) => {
-        if (response.devices.length !== 0) {
-          this.setState({ activeDevice: true });
-        }
-      })
-      .catch((e) => {
-        console.log(e);
       });
   };
 
@@ -234,7 +224,6 @@ export default class PomoPlay extends Component {
             homeClick={this.homeClick}
             clearToken={this.clearToken}
             handleTitleAnimation={this.handleTitleAnimation}
-            getActiveDevices={this.getActiveDevices}
           />
         );
       case 3:

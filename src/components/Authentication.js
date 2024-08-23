@@ -7,16 +7,15 @@ import { SpotifyAuth } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css";
 import Typist from "react-typist";
 import styles from "/Users/andrewhumble/projects/pomoplaylist/src/authStyle.module.css";
-import logoImg from "/Users/andrewhumble/projects/pomoplaylist/src/favicon.ico";
 import { Grid, Box, Typography, makeStyles } from "@material-ui/core";
 import FadeIn from "./FadeIn";
+import { ReactComponent as TomatoImg } from '../assets/tomato.svg';
 
 const useStyles = makeStyles(() => ({
   logoStyle: {
     fontFamily: "Source Code Pro",
     fontWeight: "900",
     color: "#FFFFFF",
-    fontSize: "4vw",
   },
   stepStyle: {
     color: "#1dd760",
@@ -25,7 +24,6 @@ const useStyles = makeStyles(() => ({
     fontFamily: "Menlo",
     fontWeight: "900",
     color: "#FFFFFF",
-    fontSize: "12vw",
   },
 }));
 
@@ -35,7 +33,6 @@ const Authentication = ({
   handleToken,
   getUserPlaylists,
   logout,
-  handleTitleAnimation,
 }) => {
   const [spotifyAuthToken] = useState();
   const { logoStyle, logoStyleMobile } = useStyles();
@@ -60,12 +57,11 @@ const Authentication = ({
   };
 
   const renderLogoSection = (isMobile) => (
-    <Grid container spacing={6} justifyContent="center" alignItems="center">
-      <img src={logoImg} alt="Logo" width="45vw" height="45vw" />
+    <Grid container spacing={6} pb={5} justifyContent="center" alignItems="center">
+      <TomatoImg alt="logo" width="3.5vw" height="3.5vw" />
       <Box ml={2}>
         <Typography
-          variant="h6"
-          component="h1"
+          variant="h3"
           className={isMobile ? logoStyleMobile : logoStyle}
         >
           <Typist
@@ -73,7 +69,7 @@ const Authentication = ({
             cursor={{ show: true, blink: true, element: "|", hideWhenDone: true }}
           >
             <Typist.Delay ms={500} />
-            pomoplaylist
+            pomoPlaylist
           </Typist>
         </Typography>
       </Box>

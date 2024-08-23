@@ -83,7 +83,7 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
   );
 
   const renderActionButtons = () => (
-    <Box mt={isMobile ? 2 : 3}>
+    <Box mt={isMobile ? 2 : 6}>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={6}>
           <Button
@@ -91,7 +91,7 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
             fullWidth
             variant="contained"
             className={classes.button}
-            style={{ padding: isMobile ? "3vw 12vw" : "0.6vw 8vw", fontSize: isMobile ? "5vw" : "1.5vw" }}
+            size="large"
           >
             Back
           </Button>
@@ -102,7 +102,7 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
             fullWidth
             variant="contained"
             className={classes.button}
-            style={{ padding: isMobile ? "3vw 12vw" : "0.6vw 8vw", fontSize: isMobile ? "5vw" : "1.5vw" }}
+            size="large"
           >
             Start
           </Button>
@@ -111,11 +111,11 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
     </Box>
   );
 
-  const renderTypography = (text, fontSize, color) => (
+  const renderTypography = (align, text, fontSize, color) => (
     <Typography
       component="h1"
       variant={fontSize}
-      align="center"
+      align={align}
       style={{
         fontFamily: "Source Code Pro",
         fontWeight: "bold",
@@ -133,8 +133,8 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
         <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
           <Grid item>
             <Box mt={isMobile ? 8 : 0} mb={5}>
-              {renderTypography("set your pomodoro schedule", isMobile ? "h3" : "h3", "#ffffff")}
-              {renderTypography("(in minutes)", isMobile ? "h3" : "h3", "grey")}
+              {renderTypography("center", "set your pomodoro schedule", isMobile ? "h4" : "h4", "#ffffff")}
+              {renderTypography("right", "(in mins)", isMobile ? "h6" : "h6", "grey")}
             </Box>
           </Grid>
           <Grid item>{renderFormFields()}</Grid>
@@ -142,8 +142,9 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
           <Grid item>
             <Box mt={4}>
               {renderTypography(
+                "center",
                 "a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break",
-                isMobile ? "h4" : "h4",
+                isMobile ? "h6" : "h6",
                 "grey"
               )}
             </Box>
