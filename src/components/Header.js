@@ -93,46 +93,20 @@ const Header = ({ logout }) => {
 
   const displayDesktop = () => {
     return (
-      <Toolbar className={toolbar} sx={{ position: 'relative' }}>
-        {/* Center the logo */}
-        <Box
-          sx={{
-            position: 'absolute',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            display: 'flex',
-            alignItems: 'center'
-          }}
-        >
+      <Toolbar className={toolbar}>
+        {/* Left-aligned TomatoImg */}
+        <Box display="flex" alignItems="center">
           {logo}
         </Box>
   
-        {/* Left buttons (aligned relative to the logo) */}
-        <Box
-          sx={{
-            position: 'absolute',
-            left: 'calc(50% - 100px)', // Adjust based on your button width
-            transform: 'translateX(-100%)', // Shifts the buttons to the left
-          }}
-        >
+        {/* Right-aligned buttons */}
+        <Box display="flex" alignItems="center" marginLeft="auto">
           {getMenuButtons()}
-        </Box>
-  
-        {/* Right buttons (aligned relative to the logo) */}
-        <Box
-          sx={{
-            position: 'absolute',
-            left: 'calc(50% + 100px)', // Adjust based on your button width
-            transform: 'translateX(0)', // Keeps the buttons to the right
-          }}
-        >
           {getLogoutButtons()}
         </Box>
       </Toolbar>
     );
   };
-  
-  
 
   const displayMobile = () => {
     const handleDrawerOpen = () =>

@@ -12,6 +12,14 @@ import { usePomo } from "./PomoContext";
 const Authentication = () => {
   const { nextStep, dispatch } = usePomo();
 
+  const getRedirectUri = () => {
+    if (process.env.NODE_ENV === "development") {
+      return "http://localhost:3000/pomoplaylist";
+    } else {
+      return "https://andrewhumble.dev/pomoplaylist";
+    }
+  }
+
   const Login = (token) => {
     dispatch({ type: "SET_FIELD", field: "accessToken", payload: token });
     nextStep();
@@ -41,7 +49,7 @@ const Authentication = () => {
       <Box mt={4}>
         <Grid container justifyContent="center" alignItems="flex-end" style={{ fontSize: "2vw", fontFamily: "Source Code Pro" }}>
           <SpotifyAuth
-            redirectUri="http://localhost:3000/pomoplaylist"
+            redirectUri={getRedirectUri()}
             clientID="4e3911e72862411b8934b3ddc35e9d93"
             scopes={[
               "playlist-read-collaborative",

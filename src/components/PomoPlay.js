@@ -8,6 +8,7 @@ import Work from "./Work";
 import ShortBreak from "./ShortBreak";
 import LongBreak from "./LongBreak";
 import Header from "./Header";
+import AppContainer from "./AppContainer";
 import SpotifyService from '../services/spotifyService';
 
 const PomoPlay = () => {
@@ -31,8 +32,10 @@ const PomoPlay = () => {
 
   return (
     <div>
-      <Header logout={logout} values={state} />
-      {steps[state.step] || null}
+      <AppContainer>
+        <Header logout={logout} values={state} />
+        {steps[state.step] || null}
+      </AppContainer>
     </div>
   );
 };
