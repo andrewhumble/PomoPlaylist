@@ -50,7 +50,7 @@ export const PomoProvider = ({ children }) => {
   const prevStep = () => dispatch({ type: "PREV_STEP" });
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    window.location = "/pomoplaylist";
+    window.location = "/";
   };
 
   return (

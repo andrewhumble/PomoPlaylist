@@ -88,7 +88,7 @@ const Header = ({ logout }) => {
   }, []);
 
   const returnHome = () => {
-    window.location = "/pomoplaylist";
+    window.location = "/";
   };
 
   const displayDesktop = () => {

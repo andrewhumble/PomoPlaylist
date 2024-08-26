@@ -14,9 +14,9 @@ const Authentication = () => {
 
   const getRedirectUri = () => {
     if (process.env.NODE_ENV === "development") {
-      return "http://localhost:3000/pomoplaylist";
+      return "http://localhost:3000";
     } else {
-      return "https://pomoplaylist.vercel.app/pomoplaylist";
+      return "https://pomoplaylist.vercel.app";
     }
   }
 
