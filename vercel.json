@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      { "source": "/pomoplaylist/:path*", "destination": "/" }
+    ]
+  }
+  

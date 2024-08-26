@@ -3,7 +3,7 @@ import React from "react";
 import { SpotifyAuth } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css";
 import Typist from "react-typist";
-import styles from "/Users/andrewhumble/projects/pomoplaylist/src/authStyle.module.css";
+import styles from "../authStyle.module.css";
 import { Grid, Box, Typography } from "@material-ui/core";
 import FadeIn from "./FadeIn";
 import { ReactComponent as TomatoImg } from '../assets/tomato.svg';
