@@ -1,68 +1,28 @@
 import "../App.css";
-import React, { useState, useEffect } from "react";
-import { SpotifyApiContext } from "react-spotify-api";
-import Cookies from "js-cookie";
-import Header from "./Header";
+import React from "react";
 import { SpotifyAuth } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css";
 import Typist from "react-typist";
 import styles from "/Users/andrewhumble/projects/pomoplaylist/src/authStyle.module.css";
-import { Grid, Box, Typography, makeStyles } from "@material-ui/core";
+import { Grid, Box, Typography } from "@material-ui/core";
 import FadeIn from "./FadeIn";
 import { ReactComponent as TomatoImg } from '../assets/tomato.svg';
+import { usePomo } from "./PomoContext";
 
-const useStyles = makeStyles(() => ({
-  logoStyle: {
-    fontFamily: "Source Code Pro",
-    fontWeight: "900",
-    color: "#FFFFFF",
-  },
-  stepStyle: {
-    color: "#1dd760",
-  },
-  logoStyleMobile: {
-    fontFamily: "Menlo",
-    fontWeight: "900",
-    color: "#FFFFFF",
-  },
-}));
-
-const Authentication = ({
-  nextStep,
-  values,
-  handleToken,
-  getUserPlaylists,
-  logout,
-}) => {
-  const [spotifyAuthToken] = useState();
-  const { logoStyle, logoStyleMobile } = useStyles();
-  const [mobileView, setMobileView] = useState(false);
-
-  useEffect(() => {
-    const setResponsiveness = () =>
-      setMobileView(window.innerWidth < 700);
-
-    setResponsiveness();
-    window.addEventListener("resize", setResponsiveness);
-
-    return () => {
-      window.removeEventListener("resize", setResponsiveness);
-    };
-  }, []);
+const Authentication = () => {
+  const { nextStep, dispatch } = usePomo();
 
   const Login = (token) => {
-    handleToken({ token });
-    getUserPlaylists({ token });
+    dispatch({ type: "SET_FIELD", field: "accessToken", payload: token });
     nextStep();
   };
 
-  const renderLogoSection = (isMobile) => (
+  const renderLogoSection = () => (
     <Grid container spacing={6} pb={5} justifyContent="center" alignItems="center">
       <TomatoImg alt="logo" width="3.5vw" height="3.5vw" />
       <Box ml={2}>
         <Typography
           variant="h3"
-          className={isMobile ? logoStyleMobile : logoStyle}
         >
           <Typist
             avgTypingDelay={100}
@@ -76,7 +36,7 @@ const Authentication = ({
     </Grid>
   );
 
-  const renderSpotifyAuth = (isMobile) => (
+  const renderSpotifyAuth = () => (
     <FadeIn>
       <Box mt={4}>
         <Grid container justifyContent="center" alignItems="flex-end" style={{ fontSize: "2vw", fontFamily: "Source Code Pro" }}>
@@ -87,10 +47,14 @@ const Authentication = ({
               "playlist-read-collaborative",
               "user-modify-playback-state",
               "user-read-playback-state",
+              "streaming",
+              "app-remote-control",
+              "user-read-email",
+              "user-read-private"
             ]}
             onAccessToken={Login}
             showDialog={true}
-            btnClassName={isMobile ? styles.authButtonMobile : styles.authButton}
+            btnClassName={styles.authButton}
           />
         </Grid>
       </Box>
@@ -100,35 +64,26 @@ const Authentication = ({
   const renderContent = () => (
     <Box>
       <Grid item>
-        <Box mb={6}>{renderLogoSection(mobileView)}</Box>
+        <Box mb={6}>{renderLogoSection()}</Box>
       </Grid>
       <Box>
-        {Cookies.get("spotifyAuthToken") ? (
-          <SpotifyApiContext.Provider value={spotifyAuthToken}>
-            {Login({ spotifyAuthToken })}
-          </SpotifyApiContext.Provider>
-        ) : (
-          renderSpotifyAuth(mobileView)
-        )}
+        {renderSpotifyAuth()}
       </Box>
     </Box>
   );
 
   return (
-    <div>
-      <Header logout={logout} values={values} />
-      <div
-        className="authentication"
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "43%",
-          transform: "translate(-50%, -50%)",
-          padding: "100",
-        }}
-      >
-        {renderContent()}
-      </div>
+    <div
+      className="authentication"
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "43%",
+        transform: "translate(-50%, -50%)",
+        padding: "100",
+      }}
+    >
+      {renderContent()}
     </div>
   );
 };

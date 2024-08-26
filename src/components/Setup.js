@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "react-spotify-auth/dist/index.css";
-import Header from "./Header";
 import { Button, Box, Typography, Grid, CircularProgress, makeStyles } from "@material-ui/core";
 import "rsuite/dist/rsuite.min.css";
 import { Store } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import FadeIn from "./FadeIn";
-import Cookies from "js-cookie";
-import SpotifyWebApi from "spotify-web-api-js";
+import { usePomo } from "./PomoContext";
+import SpotifyService from '../services/spotifyService';
 
 const useStyles = makeStyles(() => ({
   alertButton: {
@@ -24,12 +23,6 @@ const useStyles = makeStyles(() => ({
     transform: "translate(-50%, -50%)",
     padding: "50px",
   },
-  heading: {
-    fontFamily: "Source Code Pro",
-    fontWeight: "bold",
-    color: "#ffffff",
-    textAlign: "left",
-  },
   continueButton: {
     backgroundColor: "#1AD760",
     color: "white",
@@ -42,8 +35,6 @@ const useStyles = makeStyles(() => ({
   loadingText: {
     color: "yellow",
     marginBottom: "1rem",
-    fontFamily: "Source Code Pro",
-    fontWeight: "bold",
     display: "flex",
     alignItems: "center",
     gap: "1rem",
@@ -52,46 +43,24 @@ const useStyles = makeStyles(() => ({
   foundDevice: {
     color: "green",
     marginBottom: "1rem",
-    fontFamily: "Source Code Pro",
-    fontWeight: "bold",
     display: "flex",
     alignItems: "center",
     gap: "1rem",
   },
-  deviceText: {
-    color: "#ffffff",
-    marginBottom: "1rem",
-    fontFamily: "Source Code Pro",
-    fontWeight: "bold",
-  },
 }));
 
-const Setup = ({ nextStep, logout, values }) => {
+const Setup = () => {
+  const { nextStep } = usePomo();
   const [isLoading, setIsLoading] = useState(true);
   const [activeDevice, setActiveDevice] = useState(null);
   const classes = useStyles({ isLoading });
-
-  const getActiveDevices = async () => {
-    try {
-      const spotifyApi = new SpotifyWebApi();
-      spotifyApi.setAccessToken(Cookies.get("spotifyAuthToken"));
-      const response = await spotifyApi.getMyDevices();
-      if (response.devices && response.devices.length > 0) {
-        return response.devices;
-      }
-      return null;
-    } catch (error) {
-      console.error("Error fetching devices:", error);
-      return null;
-    }
-  };
 
   useEffect(() => {
     let pollingInterval;
 
     const fetchDevices = async () => {
       try {
-        const devices = await getActiveDevices();
+        const devices = await SpotifyService.getActiveDevices();
         if (devices) {
           setActiveDevice(devices[0]); // Assuming the first device is the one you want
           setIsLoading(false); // Stop loading when device is found
@@ -149,47 +118,44 @@ const Setup = ({ nextStep, logout, values }) => {
   };
 
   return (
-    <div>
-      <Header logout={logout} values={values} />
-      <div className={classes.container}>
-        <Grid container alignItems="center" justifyContent="flex-start">
-          <Typography variant="h4" className={classes.heading}>
-            Play a song on your Spotify device, and then press continue.
-            <Button
-              className={classes.alertButton}
-              onClick={handleNotify}
-              startIcon={<HelpOutlineIcon />}
-            />
+    <div className={classes.container}>
+      <Grid container alignItems="center" justifyContent="flex-start">
+        <Typography variant="h4" className={classes.heading}>
+          Play a song on your Spotify device, and then press continue.
+          <Button
+            className={classes.alertButton}
+            onClick={handleNotify}
+            startIcon={<HelpOutlineIcon />}
+          />
+        </Typography>
+      </Grid>
+      <Box mt={2} align="center">
+        {isLoading ? (
+          <Typography variant="h6" className={classes.loadingText}>
+            <CircularProgress size={18} color="yellow" />
+            Looking for device...
           </Typography>
-        </Grid>
-        <Box mt={2} align="center">
-          {isLoading ? (
-            <Typography variant="h6" className={classes.loadingText}>
-              <CircularProgress size={18} color="yellow" />
-              Looking for device...
-            </Typography>
-          ) : activeDevice ? (
-            <Typography variant="h6" className={classes.foundDevice}>
+        ) : activeDevice ? (
+          <Typography variant="h6" className={classes.foundDevice}>
               > {activeDevice.name}
-            </Typography>
-          ) : (
-            <Typography variant="h6" className={classes.loadingText}>
-              No active device found.
-            </Typography>
-          )}
-          <FadeIn>
-            <Box mt={2} display="flex" justifyContent="flex-end">
-              <Button 
-                onClick={handleContinue}
-                type="submit"
-                variant="contained"
-                className={classes.continueButton}>
-                  Continue
-              </Button>
-            </Box>
-          </FadeIn>
-        </Box>
-      </div>
+          </Typography>
+        ) : (
+          <Typography variant="h6" className={classes.loadingText}>
+            No active device found.
+          </Typography>
+        )}
+        <FadeIn>
+          <Box mt={2} display="flex" justifyContent="flex-end">
+            <Button
+              onClick={handleContinue}
+              type="submit"
+              variant="contained"
+              className={classes.continueButton}>
+              Continue
+            </Button>
+          </Box>
+        </FadeIn>
+      </Box>
     </div>
   );
 };

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Grid, Button, TextField, Typography, Box, useMediaQuery } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Header from "./Header";
+import { usePomo } from "./PomoContext";
+import SpotifyService from '../services/spotifyService';
 
 const useStyles = makeStyles({
   root: {
@@ -48,19 +49,24 @@ const useStyles = makeStyles({
   },
 });
 
-const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }) => {
+const Confirmation = () => {
+  const { state, nextStep, prevStep, dispatch } = usePomo();
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:700px)");
 
   const Continue = (e) => {
     e.preventDefault();
-    play(values.choiceId);
+    SpotifyService.play(state, dispatch);
     nextStep();
   };
 
   const Previous = (e) => {
     e.preventDefault();
     prevStep();
+  };
+
+  const handleChange = (field) => (e) => {
+    dispatch({ type: "SET_FIELD", field, payload: e.target.value });
   };
 
   const renderTextField = (label, defaultValue, onChange, customInputProps = {}) => (
@@ -127,30 +133,27 @@ const Confirmation = ({ prevStep, nextStep, values, logout, play, handleChange }
   );
 
   return (
-    <div>
-      <Header logout={logout} values={values} />
-      <div className={classes.container} align="center">
-        <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-          <Grid item>
-            <Box mt={isMobile ? 8 : 0} mb={5}>
-              {renderTypography("center", "set your pomodoro schedule", isMobile ? "h4" : "h4", "#ffffff")}
-              {renderTypography("right", "(in mins)", isMobile ? "h6" : "h6", "grey")}
-            </Box>
-          </Grid>
-          <Grid item>{renderFormFields()}</Grid>
-          <Grid item>{renderActionButtons()}</Grid>
-          <Grid item>
-            <Box mt={4}>
-              {renderTypography(
-                "center",
-                "a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break",
-                isMobile ? "h6" : "h6",
-                "grey"
-              )}
-            </Box>
-          </Grid>
+    <div className={classes.container} align="center">
+      <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
+        <Grid item>
+          <Box mt={isMobile ? 8 : 0} mb={5}>
+            {renderTypography("center", "set your pomodoro schedule", isMobile ? "h4" : "h4", "#ffffff")}
+            {renderTypography("right", "(in mins)", isMobile ? "h6" : "h6", "grey")}
+          </Box>
         </Grid>
-      </div>
+        <Grid item>{renderFormFields()}</Grid>
+        <Grid item>{renderActionButtons()}</Grid>
+        <Grid item>
+          <Box mt={4}>
+            {renderTypography(
+              "center",
+              "a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break",
+              isMobile ? "h6" : "h6",
+              "grey"
+            )}
+          </Box>
+        </Grid>
+      </Grid>
     </div>
   );
 };

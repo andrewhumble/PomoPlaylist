@@ -1,33 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { usePomo } from "./PomoContext";
+import SpotifyService from '../services/spotifyService';
 
 const CountDownTimer = ({
-  hoursMinSecs,
-  values,
-  pause,
-  play,
-  incrementSessionCount,
-  setStep,
+  hoursMinSecs
 }) => {
+  const { state, dispatch } = usePomo();
   const { hours = 0, minutes = 0, seconds = 0 } = hoursMinSecs;
-  const [[hrs, mins, secs], setTime] = React.useState([
-    hours,
-    minutes,
-    seconds,
-  ]);
+  const [[hrs, mins, secs], setTime] = useState([hours, minutes, seconds]);
+
+  const setStep = () => {
+    const timeForABreak = state.step === 4;
+    if (timeForABreak) {
+      const timeForALongBreak = state.sessions % 3 === 0 && state.sessions !== 0;
+      if (timeForALongBreak) {
+        dispatch({ type: "SET_STEP", payload: 6 });
+      } else {
+        dispatch({ type: "SET_STEP", payload: 5 });
+      }
+    }
+    dispatch({ type: "SET_STEP", payload: 4 });
+  };
+
+  const incrementSessionCount = () => {
+    dispatch({
+      type: "SET_FIELD",
+      field: "sessions",
+      payload: state.sessions + 1,
+    });
+  };
 
   const tick = () => {
     if (parseInt(hrs) === 0 && parseInt(mins) === 0 && parseInt(secs) === 0) {
-      if (values.playing === true) {
-        if (values.sessions % 3 === 0 && values.sessions !== 0) {
-          pause(values.choiceId);
+      if (state.playing === true) {
+        if (state.sessions % 3 === 0 && state.sessions !== 0) {
+          SpotifyService.pause(state, dispatch);
           setStep(7);
         } else {
-          pause(values.choiceId);
+          SpotifyService.pause(state, dispatch);
           setStep(6);
         }
-      } else if (values.playing === false) {
+      } else if (state.playing === false) {
         incrementSessionCount();
-        play(values.choiceId);
+        SpotifyService.play(state, dispatch);
         setStep(5);
       }
     } else if (mins === 0 && secs === 0) {
@@ -39,22 +54,20 @@ const CountDownTimer = ({
     }
   };
 
-  //const reset = () =>
-  //  setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
-
-  var pauseAmt = 1000;
-
-  React.useEffect(() => {
-    const timerId = setInterval(() => tick(), pauseAmt);
+  useEffect(() => {
+    let timerId;
+    if (state.playing) {
+      timerId = setInterval(() => tick(), 1000);
+    }
     return () => clearInterval(timerId);
-  });
+  }, [hrs, mins, secs, state.playing]);
 
   return (
-    <div>
-      <p>{`${hrs.toString().padStart(2, "0")}:${mins
+    <p style={{ fontSize: "160px", margin: 0 }}>
+      {`${hrs.toString().padStart(2, "0")}:${mins
         .toString()
-        .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`}</p>
-    </div>
+        .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`}
+    </p>
   );
 };
 

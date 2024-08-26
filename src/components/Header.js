@@ -2,13 +2,12 @@ import {
   AppBar,
   Toolbar,
   makeStyles,
-  Grid,
   Box,
   Button,
   IconButton,
   Drawer,
   MenuItem,
-  Link,s
+  Link,
 } from "@material-ui/core";
 import { ReactComponent as TomatoImg } from '../assets/tomato.svg';
 import MenuIcon from "@material-ui/icons/Menu";
@@ -16,16 +15,10 @@ import { Link as RouterLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 const useStyles = makeStyles(() => ({
-  desktopHeader: {
-    backgroundColor: "#121212",
-  },
   mobileHeader: {
     backgroundColor: "#121212",
   },
   logoStyle: {
-    fontFamily: "Source Code Pro, sans-serif",
-    fontWeight: "bold",
-    color: "#FFFFFF",
     fontSize: "20px",
   },
   menuButton: {
@@ -50,6 +43,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     alignItems: "center",
     height: "100%",
+    marginRight: "20px",
+    marginLeft: "20px",
   },
 }));
 
@@ -62,12 +57,10 @@ const headersData = [
 
 const Header = ({ logout }) => {
   const {
-    desktopHeader,
     mobileHeader,
     menuButton,
     toolbar,
     drawerContainer,
-    logoStyle,
     logoBox,
   } = useStyles();
 
@@ -100,17 +93,45 @@ const Header = ({ logout }) => {
 
   const displayDesktop = () => {
     return (
-      <Toolbar className={toolbar}>
-        <Grid container alignItems="center" justifyContent="space-evenly">
-          <Grid item>{getMenuButtons()}</Grid>
-          <Grid item xs={6} container justifyContent="center">
-            {logo}
-          </Grid>
-          <Grid item>{getLogoutButtons()}</Grid>
-        </Grid>
+      <Toolbar className={toolbar} sx={{ position: 'relative' }}>
+        {/* Center the logo */}
+        <Box
+          sx={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          {logo}
+        </Box>
+  
+        {/* Left buttons (aligned relative to the logo) */}
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 'calc(50% - 100px)', // Adjust based on your button width
+            transform: 'translateX(-100%)', // Shifts the buttons to the left
+          }}
+        >
+          {getMenuButtons()}
+        </Box>
+  
+        {/* Right buttons (aligned relative to the logo) */}
+        <Box
+          sx={{
+            position: 'absolute',
+            left: 'calc(50% + 100px)', // Adjust based on your button width
+            transform: 'translateX(0)', // Keeps the buttons to the right
+          }}
+        >
+          {getLogoutButtons()}
+        </Box>
       </Toolbar>
     );
   };
+  
   
 
   const displayMobile = () => {
