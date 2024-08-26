@@ -8,6 +8,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import FadeIn from "./FadeIn";
 import { usePomo } from "./PomoContext";
 import SpotifyService from '../services/spotifyService';
+import CheckIcon from '@mui/icons-material/Check';
 
 const useStyles = makeStyles(() => ({
   alertButton: {
@@ -137,7 +138,7 @@ const Setup = () => {
           </Typography>
         ) : activeDevice ? (
           <Typography variant="h6" className={classes.foundDevice}>
-              > {activeDevice.name}
+              <CheckIcon size={18} color="green"/> {activeDevice.name}
           </Typography>
         ) : (
           <Typography variant="h6" className={classes.loadingText}>
