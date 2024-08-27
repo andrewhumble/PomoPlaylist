@@ -1,3 +1,8 @@
+/* In your styles.css or index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700&display=swap");
 
 body {

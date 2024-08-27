@@ -121,7 +121,7 @@ const Setup = () => {
   return (
     <div className={classes.container}>
       <Grid container alignItems="center" justifyContent="flex-start">
-        <Typography variant="h4" className={classes.heading}>
+        <Typography variant="h4">
           Play a song on your Spotify device, and then press continue.
           <Button
             className={classes.alertButton}

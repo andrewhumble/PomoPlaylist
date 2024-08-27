@@ -60,9 +60,9 @@ const SpotifyService = {
             const tempHash = response.items.reduce((acc, item) => {
                 acc[item.name] = {
                     id: item.id,
-                    imageUrl: item.images[0].url,
-                    length: item.tracks.total,
-                    link: item.external_urls.spotify,
+                    imageUrl: item.images[0]?.url,
+                    length: item.tracks?.total,
+                    link: item.external_urls?.spotify,
                 };
                 return acc;
             }, {});

@@ -137,7 +137,7 @@ const Confirmation = () => {
       <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
         <Grid item>
           <Box mt={isMobile ? 8 : 0} mb={5}>
-            {renderTypography("center", "set your pomodoro schedule", isMobile ? "h4" : "h4", "#ffffff")}
+            {renderTypography("center", "Set your pomodoro schedule", isMobile ? "h4" : "h4", "#ffffff")}
             {renderTypography("right", "(in mins)", isMobile ? "h6" : "h6", "grey")}
           </Box>
         </Grid>
@@ -146,8 +146,8 @@ const Confirmation = () => {
         <Grid item>
           <Box mt={4}>
             {renderTypography(
-              "center",
-              "a standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break",
+              "left",
+              "A standard Pomodoro cycle is a 25/5/10 minute split for work, short break, and long break",
               isMobile ? "h6" : "h6",
               "grey"
             )}
