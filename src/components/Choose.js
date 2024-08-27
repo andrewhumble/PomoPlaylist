@@ -117,7 +117,7 @@ const Choose = () => {
         container
         spacing={0}
         direction="column"
-        alignItems="left"
+        alignItems="flex-start"
         justifyContent="center"
         style={{ minHeight: "80vh" }}
       >

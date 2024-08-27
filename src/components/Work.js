@@ -6,7 +6,7 @@ import NowPlaying from "./NowPlaying";
 
 const Work = () => {
   const { state } = usePomo();
-  const hoursMinSecs = { hours: 0, minutes: state.workTime, seconds: 0 };
+  const hoursMinSecs = { hours: 0, minutes: state.workTime, seconds: 10 };
 
   const displayDesktop = () => {
     return (

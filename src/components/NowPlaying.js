@@ -27,7 +27,7 @@ const NowPlaying = () => {
   const loading = false;
   const result = { isPlaying: true };
   const [player, setPlayer] = useState(undefined);
-  const [is_paused, setPaused] = useState(false);
+  const [is_paused, setPaused] = useState(state.paused);
   const [is_active, setActive] = useState(false);
   const [current_track, setTrack] = useState(track);
   const [position, setPosition] = useState(0); // Track the current position
@@ -70,6 +70,12 @@ const NowPlaying = () => {
         setPaused(player_state.paused);
         setPosition(player_state.position); // Set the current position
         setDuration(player_state.duration); // Set the duration of the track
+
+        dispatch({
+          type: "SET_FIELD",
+          field: "paused",
+          payload: player_state.paused,
+        });
 
         player.getCurrentState().then((player_state) => {
           !player_state ? setActive(false) : setActive(true);
@@ -129,6 +135,27 @@ const NowPlaying = () => {
     });
   };
 
+  const getAlbumUrl = () => {
+    if (current_track && current_track.album) {
+      return current_track.album ? current_track.album?.images[0]?.url : null;
+    }
+    return null;
+  }
+
+  const getTrackName = () => {
+    if (!current_track) {
+      return null;
+    }
+    return current_track.name;
+  }
+
+  const getTrackArtist = () => {
+    if (current_track && current_track.artists) {
+      return current_track.artists[0]?.name
+    }
+    return null;
+  }
+
   return (
     <Card
       sx={{
@@ -158,18 +185,18 @@ const NowPlaying = () => {
                 <SkipPrevious sx={{ fontSize: 32 }} />
               </IconButton>
               <Avatar
-                src={current_track.album.images[0].url}
-                alt={`${current_track.name} album art`}
+                src={getAlbumUrl()}
+                alt={`${getTrackName()} album art`}
                 sx={{ width: 56, height: 56, borderRadius: "50%" }}
               />
               <Box sx={{ flex: 1, overflow: "hidden" }}>
-                <Link href={current_track.album.images[0].url} target="_blank" underline="none">
+                <Link href={getAlbumUrl()} target="_blank" underline="none">
                   <Typography variant="subtitle1" fontWeight="bold" noWrap>
-                    {current_track.name}
+                    {getTrackName()}
                   </Typography>
                 </Link>
                 <Typography variant="body2" color="text.secondary" noWrap>
-                  {current_track.artists[0].name}
+                  {getTrackArtist()}
                 </Typography>
                 {/* Display the track position and duration */}
                 <Typography variant="body2" color="text.secondary">

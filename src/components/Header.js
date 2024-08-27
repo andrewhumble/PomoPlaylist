@@ -48,12 +48,12 @@ const useStyles = makeStyles(() => ({
 
 const headersData = [
   {
-    label: "POMOODORO WHO?",
+    label: "POMODORO WHO?",
     href: "/about",
   },
 ];
 
-const Header = ({ logout }) => {
+const Header = () => {
   const {
     mobileHeader,
     menuLink,
@@ -161,7 +161,7 @@ const Header = ({ logout }) => {
   };
 
   const onClick = (e) => {
-    logout();
+    returnHome();
   };
 
   const getMenuLinks = () => {

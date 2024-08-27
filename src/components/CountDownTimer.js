@@ -14,12 +14,13 @@ const CountDownTimer = ({
     if (timeForABreak) {
       const timeForALongBreak = state.sessions % 3 === 0 && state.sessions !== 0;
       if (timeForALongBreak) {
-        dispatch({ type: "SET_STEP", payload: 6 });
+        dispatch({ type: "SET_STEP", field: "step", payload: 6 });
       } else {
-        dispatch({ type: "SET_STEP", payload: 5 });
+        dispatch({ type: "SET_STEP", field: "step", payload: 5 });
       }
+    } else {
+      dispatch({ type: "SET_STEP", field: "step", payload: 4 });
     }
-    dispatch({ type: "SET_STEP", payload: 4 });
   };
 
   const incrementSessionCount = () => {
@@ -42,7 +43,7 @@ const CountDownTimer = ({
         }
       } else if (state.playing === false) {
         incrementSessionCount();
-        SpotifyService.play(state, dispatch);
+        SpotifyService.resume(state, dispatch);
         setStep(5);
       }
     } else if (mins === 0 && secs === 0) {
@@ -56,7 +57,7 @@ const CountDownTimer = ({
 
   useEffect(() => {
     let timerId;
-    if (state.playing) {
+    if ((state.playing && state.step === 4) || (state.step === 5 || state.step === 6)) {
       timerId = setInterval(() => tick(), 1000);
     }
     return () => clearInterval(timerId);

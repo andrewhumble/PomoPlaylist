@@ -1,44 +1,56 @@
 import React from "react";
 import CountDownTimer from "./CountDownTimer";
-import { Typography } from "@material-ui/core";
+import { Typography, Grid, Box } from "@material-ui/core";
 import { usePomo } from "./PomoContext";
 
 const LongBreak = () => {
   const { state } = usePomo();
-  const hoursMinSecs = { hours: 0, minutes: state.longBreakTime, seconds: 0 };
+  const hoursMinSecs = { hours: 0, minutes: state.longBreakTime, seconds: 10 };
 
-  return (
-    <div
-      style={{
-        position: "absolute",
-        left: "50%",
-        top: "40%",
-        transform: "translate(-50%, -50%)",
-        fontFamily: "Source Code Pro",
-        fontWeight: "bold",
-        fontSize: "14vw",
-        color: "#DB4437",
-      }}
-    >
-      <Typography
-        component="h1"
-        variant="h4"
-        align="center"
-        style={{
-          position: "absolute",
-          left: "35%",
-          top: "25%",
-          fontSize: "3vw",
-          color: "#4285F4",
+  const displayDesktop = () => {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "80vh",
+          fontFamily: "Source Code Pro",
+          fontWeight: "bold",
+          fontSize: "14vw",
+          color: "#DB4437",
         }}
       >
-        Take a long break (Go for a walk, grab a snack, or meditate)
-      </Typography>
-      <CountDownTimer
-        hoursMinSecs={hoursMinSecs}
-      />
-    </div>
-  );
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item>
+            <Box mb={-4}>
+              <Typography
+                component="h1"
+                variant="h4"
+                align="center"
+                sx={{
+                  fontSize: "3vw",
+                }}
+              >
+                Take a long break (Go for a walk, grab a snack, or meditate)
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item>
+            <CountDownTimer hoursMinSecs={hoursMinSecs} />
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  };
+
+  return <div>{displayDesktop()}</div>;
 };
 
 export default LongBreak;
