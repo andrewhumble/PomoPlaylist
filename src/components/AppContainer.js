@@ -7,7 +7,6 @@ const AppContainer = ({ children }) => {
       sx={{
         maxWidth: "800px", // Set the maximum width for your content
         margin: "0 auto", // Center the container
-        padding: "0 20px", // Optional padding for better spacing
       }}
     >
       {children}

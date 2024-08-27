@@ -3,7 +3,6 @@ import {
   Toolbar,
   makeStyles,
   Box,
-  Button,
   IconButton,
   Drawer,
   MenuItem,
@@ -21,18 +20,17 @@ const useStyles = makeStyles(() => ({
   logoStyle: {
     fontSize: "20px",
   },
-  menuButton: {
+  menuLink: {
     fontFamily: "Source Code Pro, sans-serif",
     fontWeight: 700,
-    size: "18px",
+    color: "gray",
+    fontSize: "14px",
+    margin: "0 10px",
+    textDecoration: "none",
     "&:hover": {
       color: "#1AD760",
+      textDecoration: "none",
     },
-  },
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "0 20px",
   },
   drawerContainer: {
     padding: "20px 30px",
@@ -50,7 +48,7 @@ const useStyles = makeStyles(() => ({
 
 const headersData = [
   {
-    label: "Pomodoro Who?",
+    label: "POMOODORO WHO?",
     href: "/about",
   },
 ];
@@ -58,8 +56,7 @@ const headersData = [
 const Header = ({ logout }) => {
   const {
     mobileHeader,
-    menuButton,
-    toolbar,
+    menuLink,
     drawerContainer,
     logoBox,
   } = useStyles();
@@ -93,16 +90,16 @@ const Header = ({ logout }) => {
 
   const displayDesktop = () => {
     return (
-      <Toolbar className={toolbar}>
+      <Toolbar>
         {/* Left-aligned TomatoImg */}
         <Box display="flex" alignItems="center">
           {logo}
         </Box>
-  
-        {/* Right-aligned buttons */}
+
+        {/* Right-aligned links */}
         <Box display="flex" alignItems="center" marginLeft="auto">
-          {getMenuButtons()}
-          {getLogoutButtons()}
+          {getMenuLinks()}
+          {getLogoutLink()}
         </Box>
       </Toolbar>
     );
@@ -138,7 +135,7 @@ const Header = ({ logout }) => {
           >
             <div className={drawerContainer}>
               {getDrawerChoices()}
-              {getLogoutButtons()}
+              {getLogoutLink()}
             </div>
           </Drawer>
 
@@ -149,58 +146,50 @@ const Header = ({ logout }) => {
   };
 
   const getDrawerChoices = () => {
-    return headersData.map(({ label, href }) => {
-      return (
-        <Link
-          {...{
-            component: RouterLink,
-            to: href,
-            color: "inherit",
-            style: { textDecoration: "none" },
-            key: label,
-          }}
-        >
-          <MenuItem>{label}</MenuItem>
-        </Link>
-      );
-    });
+    return headersData.map(({ label, href }) => (
+      <Link
+        {...{
+          component: RouterLink,
+          to: href,
+          className: menuLink,
+          key: label,
+        }}
+      >
+        <MenuItem>{label}</MenuItem>
+      </Link>
+    ));
   };
 
   const onClick = (e) => {
     logout();
   };
 
-  const getMenuButtons = () => {
-    return headersData.map(({ label, href }) => {
-      return (
-        <Button
-          {...{
-            key: label,
-            color: "inherit",
-            to: href,
-            component: RouterLink,
-            className: menuButton,
-          }}
-        >
-          {label}
-        </Button>
-      );
-    });
+  const getMenuLinks = () => {
+    return headersData.map(({ label, href }) => (
+      <Link
+        {...{
+          key: label,
+          to: href,
+          component: RouterLink,
+          className: menuLink,
+        }}
+      >
+        {label}
+      </Link>
+    ));
   };
 
-  const getLogoutButtons = () => {
-    return (
-      <Button
-        {...{
-          color: "inherit",
-          className: menuButton,
-        }}
-        onClick={onClick}
-      >
-        Log OUT
-      </Button>
-    );
-  };
+  const getLogoutLink = () => (
+    <Link
+      {...{
+        className: menuLink,
+        component: "button",
+        onClick: onClick,
+      }}
+    >
+      LOGOUT
+    </Link>
+  );
 
   const logo = (
     <Box onClick={returnHome} className={logoBox}>
