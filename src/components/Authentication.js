@@ -16,7 +16,7 @@ const Authentication = () => {
     if (process.env.NODE_ENV === "development") {
       return "http://localhost:3000";
     } else {
-      return "https://pomoplaylist.vercel.app";
+      return "https://pomoplaylist.com";
     }
   }
 
